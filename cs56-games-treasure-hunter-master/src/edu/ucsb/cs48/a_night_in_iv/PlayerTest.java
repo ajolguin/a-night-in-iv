@@ -69,7 +69,7 @@ public class PlayerTest {
     @Test
     public void testGetXPos() {
         Player p = new Player(5, 5, 16, 0, "player");
-        assertEquals(250, p.getXPos());
+        assertEquals(5*GameComponent.PIXEL_SIZE, p.getXPos());
     }
 
 
@@ -81,7 +81,7 @@ public class PlayerTest {
     @Test
     public void testGetYPos() {
         Player p = new Player(6, 6, 16, 0, "player");
-        assertEquals(300, p.getYPos());
+        assertEquals(6*GameComponent.PIXEL_SIZE, p.getYPos());
     }
 
 

@@ -41,7 +41,7 @@ public class GameGui {
         JFrame frame = new JFrame();
 
         // Set the name and frame size
-        frame.setSize(608, 480);
+        frame.setSize(16+12*GameComponent.PIXEL_SIZE, 40+9*GameComponent.PIXEL_SIZE);
         frame.setTitle("Treasure Hunter");
 
         // Allows for game window to be closed
@@ -91,7 +91,7 @@ public class GameGui {
             component.checkMove(player.getXTile() + x, player.getYTile() + y);
             if (player.isMovable()) {
                 //player.setMovable(false);
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < GameComponent.PIXEL_SIZE; i++) {
                     player.moveTo(player.getXPos() + x, player.getYPos() + y);
                     if (x != 0 || y != 0)
                         player.setSprite(startingSprite + i / 10);
@@ -99,7 +99,7 @@ public class GameGui {
                         player.setSprite(startingSprite);
                     component.updatePlayer();
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(2);
                     } catch (Exception ex) {
                     }
                 }

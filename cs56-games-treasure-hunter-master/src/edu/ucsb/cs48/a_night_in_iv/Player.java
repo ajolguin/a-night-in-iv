@@ -35,7 +35,7 @@ public class Player {
             this.xTile = xTile;
             this.yTile = yTile;
             this.currentSprite = currentSprite;
-            this.moveTo(xTile * 50, yTile * 50);
+            this.moveTo(xTile * GameComponent.PIXEL_SIZE, yTile * GameComponent.PIXEL_SIZE);
         } catch (Exception e) {
         }
     }

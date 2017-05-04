@@ -29,6 +29,8 @@ public class GameComponent extends JComponent {
     Player player;
     ArrayList<Treasure> theTreasures = new ArrayList<Treasure>();
 
+    public static final int PIXEL_SIZE = 32;
+
     private ArrayList<BufferedImage> tiles;
     private ArrayList<Character> tiletypes;
     public String message = "";
@@ -48,7 +50,7 @@ public class GameComponent extends JComponent {
         // probably draws the tiles
         for (int i = 0; i < tilesHeight; i++) {
             for (int j = 0; j < tilesWidth; j++) {
-                g.drawImage(tiles.get(tilesWidth * i + j), j * 50, i * 50, null);
+                g.drawImage(tiles.get(tilesWidth * i + j), j * PIXEL_SIZE, i * PIXEL_SIZE, null);
             }
         }
 
@@ -61,8 +63,8 @@ public class GameComponent extends JComponent {
                         " y = " + theTreasures.get(i).getY());
 
                 g.drawImage(theTreasures.get(i).getImage(),
-                        theTreasures.get(i).getX() * 50,
-                        theTreasures.get(i).getY() * 50,
+                        theTreasures.get(i).getX() * PIXEL_SIZE,
+                        theTreasures.get(i).getY() * PIXEL_SIZE,
                         null);
             }
         }
@@ -98,9 +100,6 @@ public class GameComponent extends JComponent {
         try {
 
             String dir = "/resources/";
-            String imagefile1 = "bush.png";
-            String imagefile2 = "grass.png";
-            String imagefile3 = "stone.PNG";
             URL url = (getClass().getResource(dir + name));
 
             if (GameGui.debug) {
@@ -110,9 +109,9 @@ public class GameComponent extends JComponent {
 
             Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
 
-            BufferedImage grassTile = ImageIO.read(getClass().getResource("/resources/grass.png"));
-            BufferedImage bushTile = ImageIO.read(getClass().getResource("/resources/bush.png"));
-            BufferedImage stoneTile = ImageIO.read(getClass().getResource("/resources/stone.PNG"));
+            BufferedImage grassTile = ImageIO.read(getClass().getResource("/resources/grass32.png"));
+            BufferedImage bushTile = ImageIO.read(getClass().getResource("/resources/grass32.png"));
+            BufferedImage stoneTile = ImageIO.read(getClass().getResource("/resources/rock32.PNG"));
             tilesWidth = scanner.nextInt();
             tilesHeight = scanner.nextInt();
             String temp;
@@ -158,7 +157,7 @@ public class GameComponent extends JComponent {
             //prevent player from move into stones
         else if (tiletypes.get(yTile * tilesWidth + xTile) == 'S')
             player.setMovable(false);
-        else if (player.getXPos() != player.getXTile() * 50 || player.getYPos() != player.getYTile() * 50)
+        else if (player.getXPos() != player.getXTile() * PIXEL_SIZE || player.getYPos() != player.getYTile() * PIXEL_SIZE)
             player.setMovable(false);
         else
             player.setMovable(true);
