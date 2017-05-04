@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.games.treasure_hunter;
+package edu.ucsb.cs48.a_night_in_iv;
 
 import java.net.URL;
 import java.awt.Graphics;
