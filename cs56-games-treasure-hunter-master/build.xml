@@ -11,7 +11,7 @@
   <property name="javadocURL" value="${webBaseURL}/${projectName}/javadoc" /> 
     <property name="jwsDest" value="${webRoot}/${projectName}/jws" /> 
     <property name="jwsURL" value="${webBaseUrl}/${projectName}/jws" />
-  <property name="mainClass" value="edu.ucsb.cs56.projects.games.treasure_hunter.GameGui"/>
+  <property name="mainClass" value="edu.ucsb.cs48.a_night_in_iv.GameGui"/>
 
   
   <target name="compile" description="Compile my code">
