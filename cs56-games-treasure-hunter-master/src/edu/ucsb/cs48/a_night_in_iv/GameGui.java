@@ -20,26 +20,14 @@ public class GameGui {
 
     Player player;
     ArrayList<Treasure> theTreasures = new ArrayList<Treasure>();
+    JFrame frame;
     GameComponent component;
 
     public static boolean debug = false;
     public static final String resourcesDir = "/resources/";
 
-    public static void main(String[] args) {
-        if (debug) {
-            System.out.println("Starting main");
-        }
-        GameGui gui = new GameGui();
-
-        if (debug) {
-            System.out.println("In main calling gui.go()");
-        }
-        gui.go();
-    }
-
-    public void go() {
-        JFrame frame = new JFrame();
-
+    public GameGui() {
+        frame = new JFrame();
         // Set the name and frame size
         frame.setSize(16+12*GameComponent.PIXEL_SIZE, 40+9*GameComponent.PIXEL_SIZE);
         frame.setTitle("Treasure Hunter");
@@ -49,7 +37,7 @@ public class GameGui {
 
         // Randomly places 3 treasures on game map
         component = new GameComponent();
-        player = new Player(0, 0, 16, 8, "player");
+        player = new Player(0, 0, 16, 8, "32player");
         component.loadPlayer(player, "player");
 
         this.placeTheTreasures(5); // change the amount of treasures here
@@ -62,6 +50,17 @@ public class GameGui {
         frame.setVisible(true);
         component.validate();
         component.repaint();
+    }
+
+    public static void main(String[] args) {
+        if (debug) {
+            System.out.println("Starting main");
+        }
+        GameGui gui = new GameGui();
+
+        if (debug) {
+            System.out.println("In main calling gui.go()");
+        }
     }
 
 
@@ -86,6 +85,7 @@ public class GameGui {
             this.y = y;
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             player.setSprite(startingSprite);
             component.checkMove(player.getXTile() + x, player.getYTile() + y);

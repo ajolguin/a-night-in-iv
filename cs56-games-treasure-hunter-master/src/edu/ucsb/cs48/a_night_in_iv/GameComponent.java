@@ -46,6 +46,7 @@ public class GameComponent extends JComponent {
       When player find the treasure, the message variable value changes and the "TREASURE # FOUND" message box is drawn onto the screen.
 
     */
+    @Override
     public void paintComponent(Graphics g) {
         // probably draws the tiles
         for (int i = 0; i < tilesHeight; i++) {
@@ -149,8 +150,8 @@ public class GameComponent extends JComponent {
         if (xTile < 0 || xTile > 11 || yTile < 0 || yTile > 8)
             player.setMovable(false);
             //allows player to move after finding treasure
-        else if (!message.equals(""))
-            player.setMovable(true);
+//        else if (!message.equals(""))
+//            player.setMovable(true);
             //allows player to move into bushes
         else if (tiletypes.get(yTile * tilesWidth + xTile) == 'B')
             player.setMovable(true);
