@@ -6,24 +6,28 @@ import java.awt.image.BufferedImage;
  * Created by kovlv on 5/6/2017.
  */
 public abstract class Sprite {
-    private int XTile;
-    private int YTile;
+    private int xTile;
+    private int yTile;
 
-    Sprite(int XTile, int YTile) {
-        this.XTile = XTile;
-        this.YTile = YTile;
+    Sprite(int YTile, int XTile) {
+        this.xTile = XTile;
+        this.yTile = YTile;
     }
 
     public void update() {
-
     }
 
     int getXTile() {
-        return XTile;
+        return xTile;
     }
 
     int getYTile() {
-        return YTile;
+        return yTile;
+    }
+
+    public void setTiles(int yTile, int xTile) {
+        this.xTile = xTile;
+        this.yTile = yTile;
     }
 
     abstract BufferedImage getImage();

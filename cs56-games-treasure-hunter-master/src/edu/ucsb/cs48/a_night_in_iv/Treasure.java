@@ -1,6 +1,7 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
@@ -12,23 +13,20 @@ import javax.imageio.ImageIO;
  */
 
 
-public class Treasure {
+public class Treasure extends Sprite{
     // private instance variables
-    private int xTile = 0;
-    private int yTile = 0;
     private String name;
     private boolean found = false;
     private BufferedImage image = null;
 
     //Treasure constructor
-    public Treasure(String name) {
+    public Treasure(String name, int YTile, int XTile) {
+        super(YTile, XTile);
         this.name = name;
-        this.resetXY(); // otherwise the first treasure is always at 0,0
         try {
-            image = ImageIO.read(getClass().getResource(GameGui.resourcesDir
-                    + "treasure/treasure0.png"));
+            image = ImageIO.read(getClass().getResource(GameGui.resourcesDir + "treasure/treasure1.png"));
             // function calls above might not be necessary if we just have one image
-        } catch (Exception e) {
+        } catch (IOException e) {
         }
     }
 
@@ -41,13 +39,13 @@ public class Treasure {
         Treasure r = (Treasure) o; // .equals now knows that o is-a Treasure
         // End boilerplate
 
-        return this.xTile == r.xTile && this.yTile == r.yTile;
+        return ( this.getXTile() == r.getXTile() )  && ( this.getYTile() == r.getYTile() );
     }
 
     @Override
     public int hashCode() { // straight outt conrad's tutorials
-        int xTileBit = this.xTile & 0x0000FFFF;
-        int yTileBit = this.yTile & 0x0000FFFF;
+        int xTileBit = this.getXTile() & 0x0000FFFF;
+        int yTileBit = this.getYTile() & 0x0000FFFF;
         return (xTileBit << 16) | yTileBit;
     }
 
@@ -55,28 +53,4 @@ public class Treasure {
         return image;
     }
 
-    public int getX() {
-        return xTile;
-    }
-
-    public int getY() {
-        return yTile;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean getFound() {
-        return found;
-    }
-
-    public void setFoundTrue() {
-        found = true;
-    }
-
-    public void resetXY() {
-        this.xTile = (int) (Math.random() * 12);
-        this.yTile = (int) (Math.random() * 9);
-    }
 }

@@ -5,7 +5,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.lang.management.PlatformLoggingMXBean;
 
 
 /**
@@ -17,32 +17,29 @@ import java.util.ArrayList;
 
 // all instances of Player as a treasure should be Treasure as a treasure
 public class GameGui {
-
-    Player player;
-    ArrayList<Treasure> theTreasures = new ArrayList<Treasure>();
     JFrame frame;
     GameComponent component;
-
-    public static boolean debug = false;
+    GameModel game;
     public static final String resourcesDir = "/resources/";
 
     public GameGui() {
         frame = new JFrame();
+        component = new GameComponent();
+        game = new GameModel("scene1");
+        game.setPlayer(new Player(0, 0, 16, 8, "player"));
+        component.setGame(game);
+
         // Set the name and frame size
         frame.setSize(16+12*GameComponent.PIXEL_SIZE, 40+9*GameComponent.PIXEL_SIZE);
         frame.setTitle("Treasure Hunter");
-
         // Allows for game window to be closed
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Randomly places 3 treasures on game map
-        component = new GameComponent();
-        player = new Player(0, 0, 16, 8, "32player");
-        component.loadPlayer(player, "player");
 
-        this.placeTheTreasures(5); // change the amount of treasures here
-        component.loadTreasure(theTreasures);
-        component.loadMap("map.txt");
+        this.generateRocks(12);
+        this.generateTreasures(5); // change the amount of treasures here
+
         addBindings();
 
         // adds game components and makes the window visible
@@ -53,14 +50,7 @@ public class GameGui {
     }
 
     public static void main(String[] args) {
-        if (debug) {
-            System.out.println("Starting main");
-        }
         GameGui gui = new GameGui();
-
-        if (debug) {
-            System.out.println("In main calling gui.go()");
-        }
     }
 
 
@@ -87,15 +77,46 @@ public class GameGui {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            Player player = game.getPlayer();
             player.setSprite(startingSprite);
-            component.checkMove(player.getXTile() + x, player.getYTile() + y);
+
+            int xTile = player.getXTile() + x;
+            int yTile = player.getYTile() + y;
+            /*
+               Ensures that the player does not go outside the bounds of the map (0-11 by 0-9).
+               If the player is standing on the same tile as a treasure, then the
+               message variable will change which makes the "TREASURE # FOUND"
+               message box appear
+            */
+            //limits where the player can move (ie. can move out of the box)
+            if (xTile < 0 || xTile > 11 || yTile < 0 || yTile > 8){
+                MapSection newMap = game.getMapInDirection(y, x);
+                if(newMap != null){
+                    game.moveMapInDirection(y, x);
+                    int r = (player.getXTile()+x) % game.mapWidth;
+                    if (r < 0) r += game.mapWidth;
+                    int s = (player.getYTile()+y) % game.mapHeight;
+                    if (s < 0) s += game.mapHeight;
+                    player.setTiles(s,r);
+                    player.moveTo(s * GameComponent.PIXEL_SIZE, r * GameComponent.PIXEL_SIZE);
+                }
+                player.setMovable(false);
+            }
+            else if (game.getCurrentMap().getSprite(yTile, xTile) != null)
+                player.setMovable(false);
+            else if (player.getXPos() != player.getXTile() * GameComponent.PIXEL_SIZE || player.getYPos() != player.getYTile() * GameComponent.PIXEL_SIZE)
+                player.setMovable(false);
+            else
+                player.setMovable(true);
+
+
             if (player.isMovable()) {
                 //player.setMovable(false);
                 for (int i = 0; i < GameComponent.PIXEL_SIZE; i++) {
-                    player.moveTo(player.getXPos() + x, player.getYPos() + y);
+                    player.moveTo(player.getYPos() + y, player.getXPos() + x);
                     if (x != 0 || y != 0)
                         player.setSprite(startingSprite + i / 10);
-                    if (player.getCurrentSprite() >= startingSprite + 4 && (x != 0 || y != 0))
+                    if (player.getCurrentSpriteIndex() >= startingSprite + 4 && (x != 0 || y != 0))
                         player.setSprite(startingSprite);
                     component.updatePlayer();
                     try {
@@ -103,7 +124,7 @@ public class GameGui {
                     } catch (Exception ex) {
                     }
                 }
-                player.setTiles(player.getXTile() + x, player.getYTile() + y);
+                player.setTiles(player.getYTile() + y, player.getXTile() + x);
             }
             component.validate();
             component.repaint();
@@ -123,42 +144,32 @@ public class GameGui {
         component.registerKeyboardAction(new MoveAction(1, 0), KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_FOCUSED);
     }
 
-    public void placeTheTreasures(int howMany) {
+    public void generateTreasures(int howMany) {
         if (howMany == 0) System.out.println("make at least one treasure!");
 
-        //Treasure first = new Treasure("treasure0");
-        //theTreasures.add( first );
-        //        System.out.println("first treasure: " + first.getX() + ", " + first.getY() );
+        for (int i = 0; i < howMany; i++) {
+            int xTile, yTile;
+            do {
+                xTile = (int) (Math.random() * 12);
+                yTile = (int) (Math.random() * 9);
+            }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
+            game.getCurrentMap().setSprite(new Treasure("treasure" + i, yTile, xTile), yTile, xTile);
+            System.out.println(yTile + " : " + xTile);
+        }
+
+    }
+    public void generateRocks(int howMany) {
+        if (howMany == 0) System.out.println("make at least one treasure!");
 
         for (int i = 0; i < howMany; i++) {
-            Treasure tempTreasure = new Treasure("treasure" + i);
-            while (theTreasures.contains(tempTreasure)) {
-                tempTreasure.resetXY();
-            }
-            theTreasures.add(tempTreasure);
-          /*System.out.println("treasure object " + i + ": " +
-                              theTreasures.get(i).getX() + ", " +
-                              theTreasures.get(i).getY());*/
-            // use resetXY so we don't keep creating new objects on the heap
+            int xTile, yTile;
+            do {
+                xTile = (int) (Math.random() * 12);
+                yTile = (int) (Math.random() * 9);
+            }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
+            game.getCurrentMap().setSprite(new Rock(yTile, xTile), yTile, xTile);
+            System.out.println(yTile + " : " + xTile);
         }
 
-        // prevents placement of treasures underneath stones //
-        // maybe put this in a function cause this code smells //
-        for (int i = 0; i < theTreasures.size(); ++i) {
-            while ((theTreasures.get(i).getX() == 0 && theTreasures.get(i).getY() == 6)
-                    || (theTreasures.get(i).getX() == 1 && theTreasures.get(i).getY() == 6)
-                    || (theTreasures.get(i).getX() == 3 && theTreasures.get(i).getY() == 8)
-                    || (theTreasures.get(i).getX() == 4 && theTreasures.get(i).getY() == 8)
-                    || (theTreasures.get(i).getX() == 5 && theTreasures.get(i).getY() == 8)
-                    || (theTreasures.get(i).getX() == 8 && theTreasures.get(i).getY() == 1)
-                    || (theTreasures.get(i).getX() == 8 && theTreasures.get(i).getY() == 6)
-                    || (theTreasures.get(i).getX() == 9 && theTreasures.get(i).getY() == 6)
-                    || (theTreasures.get(i).getX() == 10 && theTreasures.get(i).getY() == 2)
-                    || (theTreasures.get(i).getX() == 11 && theTreasures.get(i).getY() == 3)
-                    || (theTreasures.get(i).getX() == 11 && theTreasures.get(i).getY() == 5)
-                    || (theTreasures.get(i).getX() == 11 && theTreasures.get(i).getY() == 6)) {
-                theTreasures.get(i).resetXY();
-            }
-        }
     }
 }

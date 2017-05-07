@@ -13,26 +13,21 @@ import javax.imageio.ImageIO;
  */
 
 
-public class Player {
+public class Player extends Sprite {
     // private instance variables
     private boolean movable = true;
-    private int xTile;
-    private int yTile;
     private int xPos;
     private int yPos;
     private ArrayList<BufferedImage> sprites;
     private int currentSprite = 0;
 
     //player constructor
-    public Player(int xTile, int yTile, int numSprites,
-                  int currentSprite, String name) {
+    public Player(int yTile, int xTile, int numSprites, int currentSprite, String name) {
+        super(yTile, xTile);
         try {
             sprites = new ArrayList<BufferedImage>();
             for (int i = 0; i < numSprites; i++)
-                sprites.add(ImageIO.read(getClass().getResource(GameGui.resourcesDir + "player/" + name + i + ".png")));
-
-            this.xTile = xTile;
-            this.yTile = yTile;
+                sprites.add(ImageIO.read(getClass().getResource(GameGui.resourcesDir + "player2/" + name + i + ".png")));
             this.currentSprite = currentSprite;
             this.moveTo(xTile * GameComponent.PIXEL_SIZE, yTile * GameComponent.PIXEL_SIZE);
         } catch (Exception e) {
@@ -47,24 +42,11 @@ public class Player {
         return xPos;
     }
 
-    public int getXTile() {
-        return xTile;
-    }
-
     public int getYPos() {
         return yPos;
     }
 
-    public int getYTile() {
-        return yTile;
-    }
-
-    public void setTiles(int xTile, int yTile) {
-        this.xTile = xTile;
-        this.yTile = yTile;
-    }
-
-    public void moveTo(int xPos, int yPos) {
+    public void moveTo(int yPos, int xPos) {
         this.xPos = xPos;
         this.yPos = yPos;
     }
@@ -77,11 +59,12 @@ public class Player {
         this.movable = movable;
     }
 
-    public int getCurrentSprite() {
+    public int getCurrentSpriteIndex() {
         return currentSprite;
     }
 
-    public BufferedImage getCurrentImage() {
+    @Override
+    BufferedImage getImage() {
         return sprites.get(currentSprite);
     }
 }

@@ -26,23 +26,23 @@ public class PlayerTest {
         Player treasure = new Player(2, 5, 1, 0, "treasure");
         assertEquals(1, player.getXTile());
         assertEquals(4, player.getYTile());
-        assertEquals(4, player.getCurrentSprite());
+        assertEquals(4, player.getCurrentSpriteIndex());
 
         assertEquals(2, treasure.getXTile());
         assertEquals(5, treasure.getYTile());
-        assertEquals(0, treasure.getCurrentSprite());
+        assertEquals(0, treasure.getCurrentSpriteIndex());
     }
 
 
     /**
-     * test getCurrentSprite method
+     * test getCurrentSpriteIndex method
      *
-     * @see Player#getCurrentSprite()
+     * @see Player#getCurrentSpriteIndex()
      */
     @Test
     public void testGetCurrentSprite() {
         Player p = new Player(5, 5, 16, 0, "player");
-        assertEquals(0, p.getCurrentSprite());
+        assertEquals(0, p.getCurrentSpriteIndex());
     }
 
 
@@ -57,7 +57,7 @@ public class PlayerTest {
         //change the current sprite to 10
         p.setSprite(10);
 
-        assertEquals(10, p.getCurrentSprite());
+        assertEquals(10, p.getCurrentSpriteIndex());
     }
 
 
