@@ -7,7 +7,7 @@ public class LevelMenu extends JPanel{
 	
 	public LevelMenu(){
 		//Adding image as background
-		ContentPanel background = new ContentPanel();
+		BackgroundPanel background = new BackgroundPanel();
 		this.setLayout(new BorderLayout());
 		this.add(background, BorderLayout.CENTER);
 		//add buttons
@@ -15,7 +15,7 @@ public class LevelMenu extends JPanel{
 		level1Button.addActionListener(new level1ButtonHandler());
 		JButton level2Button = new JButton("Level 2");
 		level2Button.addActionListener(new level2ButtonHandler());
-		
+		package src.Game;
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -33,30 +33,7 @@ public class LevelMenu extends JPanel{
 	
 	//code from http://www.java2s.com/Tutorial/Java/0240__Swing/CreatingFrameswithabackgroundimage.htm
 	//for giving the JFrame a background image
-static class ContentPanel extends JPanel {
-  Image bgimage = null;
-		
- ContentPanel() {
-    MediaTracker mt = new MediaTracker(this); 
-	bgimage = Toolkit.getDefaultToolkit().getImage("start.jpg");			
-    mt.addImage(bgimage, 0);
-    try {
-      mt.waitForAll();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-	
 }
-  
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    int imwidth = bgimage.getWidth(null);
-    int imheight = bgimage.getHeight(null);
-    g.drawImage(bgimage, 1, 1, null);
-  }
-}
-}
-
 class level1ButtonHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		return;
