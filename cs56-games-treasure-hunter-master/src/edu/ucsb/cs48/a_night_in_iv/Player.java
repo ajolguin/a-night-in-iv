@@ -18,12 +18,27 @@ public class Player extends Sprite {
     private boolean movable = true;
     private int xPos;
     private int yPos;
+    private int xTile;
+    private int yTile;
     private ArrayList<BufferedImage> sprites;
     private int currentSprite = 0;
 
+    int getXTile() {
+        return xTile;
+    }
+
+    int getYTile() {
+        return yTile;
+    }
+
+    public void setTiles(int yTile, int xTile) {
+        this.xTile = xTile;
+        this.yTile = yTile;
+    }
+
     //player constructor
     public Player(int yTile, int xTile, int numSprites, int currentSprite, String name) {
-        super(yTile, xTile);
+        setTiles(yTile, xTile);
         try {
             sprites = new ArrayList<BufferedImage>();
             for (int i = 0; i < numSprites; i++)

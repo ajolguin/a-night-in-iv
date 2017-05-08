@@ -92,7 +92,7 @@ public class MapSection {
                 if (scanner.hasNext()) {
                     temp = scanner.next();
                     if (!temp.equals(".")) {
-                        this.sprites[y][x] = new GenericSprite(parent.getTexture(temp), y, x);
+                        this.sprites[y][x] = new GenericSprite(parent.getTexture(temp));
                     }
                 }
     }

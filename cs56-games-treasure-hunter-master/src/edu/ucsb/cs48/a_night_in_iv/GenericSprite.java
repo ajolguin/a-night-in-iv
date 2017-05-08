@@ -8,8 +8,7 @@ import java.awt.image.BufferedImage;
 public class GenericSprite extends Sprite {
 
     BufferedImage image;
-    public GenericSprite(BufferedImage image, int yTile, int xTile){
-        super(yTile, xTile);
+    public GenericSprite(BufferedImage image){
         this.image = image;
     }
 

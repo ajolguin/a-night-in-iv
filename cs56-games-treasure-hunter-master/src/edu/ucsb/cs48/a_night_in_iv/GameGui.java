@@ -5,6 +5,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.lang.management.PlatformLoggingMXBean;
 
 
@@ -144,7 +145,7 @@ public class GameGui {
         component.registerKeyboardAction(new MoveAction(1, 0), KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_FOCUSED);
     }
 
-    public void generateTreasures(int howMany) {
+    public void generateGenericSprite(int howMany, BufferedImage image) {
         if (howMany == 0) System.out.println("make at least one treasure!");
 
         for (int i = 0; i < howMany; i++) {
@@ -153,21 +154,7 @@ public class GameGui {
                 xTile = (int) (Math.random() * 12);
                 yTile = (int) (Math.random() * 9);
             }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
-            game.getCurrentMap().setSprite(new Treasure("treasure" + i, yTile, xTile), yTile, xTile);
-            System.out.println(yTile + " : " + xTile);
-        }
-
-    }
-    public void generateRocks(int howMany) {
-        if (howMany == 0) System.out.println("make at least one treasure!");
-
-        for (int i = 0; i < howMany; i++) {
-            int xTile, yTile;
-            do {
-                xTile = (int) (Math.random() * 12);
-                yTile = (int) (Math.random() * 9);
-            }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
-            game.getCurrentMap().setSprite(new Rock(yTile, xTile), yTile, xTile);
+            game.getCurrentMap().setSprite(new GenericSprite(image), yTile, xTile);
             System.out.println(yTile + " : " + xTile);
         }
 

@@ -102,16 +102,8 @@ public class GameModel {
         return textures.get(name);
     }
 
-    public void addMapSection(MapSection newMap, int XPos, int YPos) {
-        sections[YPos][XPos] = newMap;
-    }
-
     public MapSection getCurrentMap() {
         return sections[currentMapY][currentMapX];
-    }
-
-    public MapSection getMap(int Y, int X){
-        return sections[Y][X];
     }
 
     public MapSection getMapInDirection(int Y, int X){
