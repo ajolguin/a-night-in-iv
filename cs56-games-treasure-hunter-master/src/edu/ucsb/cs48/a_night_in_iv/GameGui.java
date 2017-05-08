@@ -26,7 +26,7 @@ public class GameGui {
         frame = new JFrame();
         component = new GameComponent();
         game = new GameModel("scene1");
-        game.setPlayer(new Player(0, 0, 16, 8, "player"));
+        game.setPlayer(new Player(3, 3, 16, 8, "player"));
         component.setGame(game);
 
         // Set the name and frame size
