@@ -11,24 +11,8 @@ import java.util.Scanner;
  * Created by kovlv on 5/6/2017.
  */
 public class MapSection {
-    public BufferedImage[][] getTerrains() {
-        return terrains;
-    }
-
-    public Character[][] getTerrainTypes() {
-        return terrainTypes;
-    }
-
-    public Sprite[][] getSprites() {
-        return sprites;
-    }
-
     public void setTerrain(BufferedImage terrain, int YTile, int XTile) {
         this.terrains[YTile][XTile] = terrain;
-    }
-
-    public void setTerrainType(Character terrainType, int YTile, int XTile) {
-        this.terrainTypes[YTile][XTile] = terrainType;
     }
 
     public void setSprite(Sprite sprite, int YTile, int XTile) {
@@ -39,16 +23,11 @@ public class MapSection {
         return this.terrains[YTile][XTile];
     }
 
-    public Character getTerrainType(int YTile, int XTile) {
-        return this.terrainTypes[YTile][XTile];
-    }
-
     public Sprite getSprite(int YTile, int XTile) {
         return this.sprites[YTile][XTile];
     }
 
     BufferedImage[][] terrains;
-    Character[][] terrainTypes;
     Sprite[][] sprites;
     int width;
     int height;
@@ -74,7 +53,6 @@ public class MapSection {
         Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
         width = scanner.nextInt();
         height = scanner.nextInt();
-        this.terrainTypes = new Character[height][width];
         this.terrains = new BufferedImage[height][width];
         this.sprites = new Sprite[height][width];
         readMapData(scanner);
@@ -88,7 +66,6 @@ public class MapSection {
         Scanner spriteScanner = new Scanner(getClass().getResourceAsStream(dir + "sprite"+name+".txt"));
         this.width = width;
         this.height = height;
-        this.terrainTypes = new Character[height][width];
         this.terrains = new BufferedImage[height][width];
         this.sprites = new Sprite[height][width];
         readMapData(mapScanner);
@@ -102,10 +79,8 @@ public class MapSection {
             for (int x = 0; x < width; ++x)
                 if (scanner.hasNext()) {
                     temp = scanner.next();
-                    if (!temp.equals(".")) {
+                    if (!temp.equals("."))
                         this.terrains[y][x] = parent.getTexture(temp);
-                        this.terrainTypes[y][x] = temp.toCharArray()[0];
-                    }
                 }
     }
 
