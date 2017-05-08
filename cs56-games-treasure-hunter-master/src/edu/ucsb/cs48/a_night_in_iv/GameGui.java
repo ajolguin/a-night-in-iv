@@ -37,8 +37,8 @@ public class GameGui {
 
         // Randomly places 3 treasures on game map
 
-        this.generateRocks(12);
-        this.generateTreasures(5); // change the amount of treasures here
+        //this.generateRocks(12);
+        //this.generateTreasures(5); // change the amount of treasures here
 
         addBindings();
 

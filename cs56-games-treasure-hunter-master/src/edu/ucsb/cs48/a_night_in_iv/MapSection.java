@@ -53,6 +53,7 @@ public class MapSection {
     int width;
     int height;
     String name;
+    GameModel parent;
 
     public void update() {
         for (int h = 0; h < height; h++)
@@ -66,7 +67,8 @@ public class MapSection {
        Tiles is later used  by paintComponent to actually make the tiles appear.
      */
 
-    public MapSection(String name) {
+    public MapSection(String name, GameModel g) {
+        parent = g;
         this.name = name;
         String dir = "/resources/";
         Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
@@ -78,45 +80,46 @@ public class MapSection {
         readMapData(scanner);
     }
 
-    public MapSection(String name, int height, int width) {
-        this.name = name;
-        String dir = "/resources/";
-        Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
+    public MapSection(String dir, String id, int height, int width, GameModel g) {
+        parent = g;
+        this.name = id;
+        System.out.println(name);
+        Scanner mapScanner = new Scanner(getClass().getResourceAsStream(dir + "map"+name+".txt"));
+        Scanner spriteScanner = new Scanner(getClass().getResourceAsStream(dir + "sprite"+name+".txt"));
         this.width = width;
         this.height = height;
         this.terrainTypes = new Character[height][width];
         this.terrains = new BufferedImage[height][width];
         this.sprites = new Sprite[height][width];
-        readMapData(scanner);
+        readMapData(mapScanner);
+        readSpriteData(spriteScanner);
     }
 
     private void readMapData(Scanner scanner){
-        try {
-            BufferedImage grassTile = ImageIO.read(getClass().getResource("/resources/G.png"));
-            BufferedImage bushTile = ImageIO.read(getClass().getResource("/resources/B.png"));
-            String temp;
+        String temp;
 
-            for (int y = 0; y < height; ++y)
-                for (int x = 0; x < width; ++x)
-                    if (scanner.hasNext()) {
-                        temp = scanner.next();
-                        if (temp.equals(("G"))) {
-                            this.terrains[y][x] = grassTile;
-                            this.terrainTypes[y][x] = 'G';
-                        }
-                        if (temp.equals(("B"))) {
-                            this.terrains[y][x] = bushTile;
-                            this.terrainTypes[y][x] = 'B';
-                        }
-                        if (temp.equals(("S"))) {
-                            this.terrains[y][x] = grassTile;
-                            this.terrainTypes[y][x] = 'S';
-                            this.sprites[y][x] = new Rock(y, x);
-                        }
+        for (int y = 0; y < height; ++y)
+            for (int x = 0; x < width; ++x)
+                if (scanner.hasNext()) {
+                    temp = scanner.next();
+                    if (!temp.equals(".")) {
+                        this.terrains[y][x] = parent.getTexture(temp);
+                        this.terrainTypes[y][x] = temp.toCharArray()[0];
                     }
-        }catch (IOException e){
+                }
+    }
 
-        }
+    private void readSpriteData(Scanner scanner){
+        String temp;
+
+        for (int y = 0; y < height; ++y)
+            for (int x = 0; x < width; ++x)
+                if (scanner.hasNext()) {
+                    temp = scanner.next();
+                    if (!temp.equals(".")) {
+                        this.sprites[y][x] = new GenericSprite(parent.getTexture(temp), y, x);
+                    }
+                }
     }
 }
 

@@ -2,17 +2,24 @@ package edu.ucsb.cs48.a_night_in_iv;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Stream;
+import java.nio.file.Files;
 
 /**
  * Created by kovlv on 5/6/2017.
  */
 public class GameModel {
     ArrayList<MapSection> Scene;
+    Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
     public int currentMapX;
     public int currentMapY;
 
@@ -25,6 +32,7 @@ public class GameModel {
     }
 
     Player player;
+    String name;
     int mapWidth;
     int mapHeight;
     int sceneWidth;
@@ -39,6 +47,7 @@ public class GameModel {
     }
 
     public GameModel(String name) {
+        this.name = name;
         String dir = "/resources/" + name + "/";
 
         Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + "scene.txt"));
@@ -52,7 +61,8 @@ public class GameModel {
         this.sections = new MapSection[sceneHeight][sceneWidth];
 
         String temp;
-
+        //Must load texture first before loading the sections
+        loadTextures("./cs56-games-treasure-hunter-master/src/resources/" + name + "/texture/");
         for (int y = 0; y < sceneHeight; ++y)
             for (int x = 0; x < sceneWidth; ++x)
                 if (scanner.hasNext()) {
@@ -60,9 +70,36 @@ public class GameModel {
                     if (temp.equals(("0"))) {
                         sections[y][x] = null;
                     } else {
-                        sections[y][x] = new MapSection(name + "/map" + temp + ".txt", mapHeight, mapWidth);
+                        sections[y][x] = new MapSection(dir, temp, mapHeight, mapWidth, this);
                     }
                 }
+    }
+
+    private void loadTextures(String path){
+        File folder = new File(path);
+        for (final File fileEntry : folder.listFiles()) {
+            if (!fileEntry.isDirectory()) {
+                System.out.println(fileEntry.getName());
+                String name = fileEntry.getName();
+                int pos = name.lastIndexOf(".");
+                if (pos > 0) {
+                    name = name.substring(0, pos);
+                }
+                try {
+                    System.out.println("name is:" + fileEntry.getName() + ":" + name);
+                    String filepath = "/resources/" + this.name + "/texture/" + fileEntry.getName();
+                    URL fileURL = getClass().getResource( filepath );
+                    textures.put(name, ImageIO.read(fileURL));
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println(textures);
+    }
+
+    public BufferedImage getTexture(String name){
+        return textures.get(name);
     }
 
     public void addMapSection(MapSection newMap, int XPos, int YPos) {
