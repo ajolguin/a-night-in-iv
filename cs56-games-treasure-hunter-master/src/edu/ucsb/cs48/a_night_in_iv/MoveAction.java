@@ -45,7 +45,7 @@ class MoveAction extends AbstractAction {
            message box appear
         */
         //limits where the player can move (ie. can move out of the box)
-        if (xTile < 0 || xTile > 11 || yTile < 0 || yTile > 8) {
+        if (xTile < 0 || xTile > 23 || yTile < 0 || yTile > 17) {
             MapSection newMap = game.getMapInDirection(y, x);
             if (newMap != null) {
                 game.moveMapInDirection(y, x);
