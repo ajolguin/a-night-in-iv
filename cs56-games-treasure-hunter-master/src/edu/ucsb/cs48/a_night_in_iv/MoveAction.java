@@ -45,7 +45,7 @@ class MoveAction extends AbstractAction {
            message box appear
         */
         //limits where the player can move (ie. can move out of the box)
-        if (xTile < 0 || xTile > 23 || yTile < 0 || yTile > 17) {
+        if (xTile < 0 || xTile > (game.mapWidth - 1) || yTile < 0 || yTile > (game.mapHeight - 1)) {
             MapSection newMap = game.getMapInDirection(y, x);
             if (newMap != null) {
                 game.moveMapInDirection(y, x);
@@ -66,7 +66,6 @@ class MoveAction extends AbstractAction {
 
 
         if (player.isMovable()) {
-            //player.setMovable(false);
             for (int i = 0; i < component.PIXEL_SIZE; i++) {
                 player.moveTo(player.getYPos() + y, player.getXPos() + x);
                 if (x != 0 || y != 0)
