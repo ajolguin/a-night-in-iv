@@ -6,14 +6,16 @@ import java.awt.image.BufferedImage;
  * Created by kovlv on 5/7/2017.
  */
 public class GenericSprite extends Sprite {
+    //private instance variables
+    private BufferedImage image;
 
-    BufferedImage image;
+    //GenericSprite constructor
     public GenericSprite(BufferedImage image){
         this.image = image;
     }
 
     @Override
-    BufferedImage getImage() {
+    public BufferedImage getImage() {
         return image;
     }
 }

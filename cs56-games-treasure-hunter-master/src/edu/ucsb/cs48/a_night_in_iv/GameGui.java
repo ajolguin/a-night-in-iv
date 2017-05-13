@@ -28,7 +28,7 @@ public class GameGui {
         component.setGame(game);
 
         // Set the name and frame size
-        frame.setSize(16+12*GameComponent.PIXEL_SIZE, 40+9*GameComponent.PIXEL_SIZE);
+        frame.setSize(16+24*GameComponent.PIXEL_SIZE, 40+18*GameComponent.PIXEL_SIZE);
         frame.setTitle("Treasure Hunter");
         // Allows for game window to be closed
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,8 +70,8 @@ public class GameGui {
         for (int i = 0; i < howMany; i++) {
             int xTile, yTile;
             do {
-                xTile = (int) (Math.random() * 12);
-                yTile = (int) (Math.random() * 9);
+                xTile = (int) (Math.random() * 24);
+                yTile = (int) (Math.random() * 18);
             }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
             game.getCurrentMap().setSprite(new GenericSprite(image), yTile, xTile);
             System.out.println(yTile + " : " + xTile);

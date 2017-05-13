@@ -51,6 +51,11 @@ public class GameComponent extends JComponent {
                 if ( map.getSprite(h,w) != null)
                     g.drawImage(map.getSprite(h,w).getImage(), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
 
+        for (int h = 0; h < map.height; h++)
+            for (int w = 0; w < map.width; w++)
+                if ( map.getItem(h,w) != null)
+                    g.drawImage(map.getItem(h,w).getImage(), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
+
         Player player = game.getPlayer();
         g.drawImage(player.getImage(), player.getXPos(), player.getYPos(), null);
 

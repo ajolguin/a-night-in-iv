@@ -1,4 +1,4 @@
-12	
+12
 9
 G G B G B G B G B G G B
 B B B G G B G G S G G G
