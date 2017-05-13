@@ -2,7 +2,7 @@ package edu.ucsb.cs48.a_night_in_iv;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JComponent;
+import javax.swing.*;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Color;
@@ -31,6 +31,8 @@ public class GameComponent extends JComponent {
 
     public String message = "";
 
+    public RepaintManager paintManager = RepaintManager.currentManager(this);
+
 
     /*
       paintComponent: It draws all of the tiles on the map. Also loads the player sprite.
@@ -57,7 +59,7 @@ public class GameComponent extends JComponent {
                     g.drawImage(map.getItem(h,w).getImage(), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
 
         Player player = game.getPlayer();
-        g.drawImage(player.getImage(), player.getXPos(), player.getYPos(), null);
+        g.drawImage(player.getPlayerImage(), player.getXPos(), player.getYPos(), null);
 
         Graphics2D g2 = (Graphics2D) g;
         if (!message.equals("")) {
@@ -72,7 +74,7 @@ public class GameComponent extends JComponent {
 
     /* Draws the player sprite onto a new tile */
     public void updatePlayer() {
-        paintImmediately(game.getPlayer().getXPos() - 10, game.getPlayer().getYPos() - 10, 100, 100);
+        paintManager.addDirtyRegion(this, game.getPlayer().getXPos() - 10, game.getPlayer().getYPos() - 10, 60, 60);
     }
 
 

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  */
 public abstract class Sprite {
 
-    public void update() {
+    public void update(double delta) {
     }
 
     abstract BufferedImage getImage();

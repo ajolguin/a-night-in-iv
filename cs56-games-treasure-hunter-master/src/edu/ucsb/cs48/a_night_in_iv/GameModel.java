@@ -5,23 +5,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Stream;
-import java.nio.file.Files;
 
 /**
  * Created by kovlv on 5/6/2017.
  */
 public class GameModel {
-    ArrayList<MapSection> Scene;
     Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
     public int currentMapX;
     public int currentMapY;
+
+    public static final int PIXEL_SIZE = 32;
 
     public Player getPlayer() {
         return player;
@@ -38,13 +34,6 @@ public class GameModel {
     int sceneWidth;
     int sceneHeight;
     MapSection[][] sections;
-
-    public GameModel(int mapWidth, int mapHeight, int sceneWidth, int sceneHeight) {
-        this.mapWidth = mapWidth;
-        this.mapHeight = mapHeight;
-        this.sceneWidth = sceneWidth;
-        this.sceneHeight = sceneHeight;
-    }
 
     public GameModel(String name) {
         this.name = name;

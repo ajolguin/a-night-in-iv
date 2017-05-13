@@ -36,31 +36,17 @@ public class MapSection {
     String name;
     GameModel parent;
 
-    public void update() {
+    public void update(double delta) {
         for (int h = 0; h < height; h++)
-            for (int w = 0; w < width; w++) {
-                sprites[h][w].update();
-            }
+            for (int w = 0; w < width; w++)
+                if(sprites[h][w] != null)
+                    sprites[h][w].update(delta);
     }
      /*
        loadMap first reads in the png files of the appropriate tile.
        It scans the text file map.txt and loads the appropriate png image into the instance variable tiles.
        Tiles is later used  by paintComponent to actually make the tiles appear.
      */
-
-    public MapSection(String name, GameModel g) {
-        parent = g;
-        this.name = name;
-        String dir = "/resources/";
-        Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
-        width = scanner.nextInt();
-        height = scanner.nextInt();
-        this.terrains = new BufferedImage[height][width];
-        this.sprites = new Sprite[height][width];
-        //CHANGES
-        this.items = new Sprite[height][width];
-        readMapData(scanner);
-    }
 
     public MapSection(String dir, String id, int height, int width, GameModel g) {
         parent = g;
