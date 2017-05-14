@@ -1,33 +1,12 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Created by kovlv on 5/6/2017.
  */
 public class MapSection {
-    public void setTerrain(BufferedImage terrain, int YTile, int XTile) {
-        this.terrains[YTile][XTile] = terrain;
-    }
-
-    public void setSprite(Sprite sprite, int YTile, int XTile) {
-        this.sprites[YTile][XTile] = sprite;
-    }
-
-    public BufferedImage getTerrain(int YTile, int XTile) {
-        return this.terrains[YTile][XTile];
-    }
-
-    public Sprite getSprite(int YTile, int XTile) { return this.sprites[YTile][XTile]; }
-
-    public Sprite getItem(int YTile, int XTile) { return this.items[YTile][XTile]; }
-
-
     BufferedImage[][] terrains;
     Sprite[][] sprites;
     Sprite[][] items;
@@ -35,33 +14,6 @@ public class MapSection {
     int height;
     String name;
     GameModel parent;
-
-    public void update() {
-        for (int h = 0; h < height; h++)
-            for (int w = 0; w < width; w++) {
-                sprites[h][w].update();
-            }
-    }
-     /*
-       loadMap first reads in the png files of the appropriate tile.
-       It scans the text file map.txt and loads the appropriate png image into the instance variable tiles.
-       Tiles is later used  by paintComponent to actually make the tiles appear.
-     */
-
-    public MapSection(String name, GameModel g) {
-        parent = g;
-        this.name = name;
-        String dir = "/resources/";
-        Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + name));
-        width = scanner.nextInt();
-        height = scanner.nextInt();
-        this.terrains = new BufferedImage[height][width];
-        this.sprites = new Sprite[height][width];
-        //CHANGES
-        this.items = new Sprite[height][width];
-        readMapData(scanner);
-    }
-
     public MapSection(String dir, String id, int height, int width, GameModel g) {
         parent = g;
         this.name = id;
@@ -77,21 +29,41 @@ public class MapSection {
         //CHANGES
         Scanner itemScanner = new Scanner(getClass().getResourceAsStream(dir + "item" + name + ".txt"));
         this.items = new Sprite[height][width];
-        readItemData(itemScanner);
     }
 
-    private void readItemData(Scanner scanner){
-        String temp;
-
-        for (int y = 0; y < height; ++y)
-            for (int x = 0; x < width; ++x)
-                if (scanner.hasNext()) {
-                    temp = scanner.next();
-                    if (!temp.equals("."))
-                        this.items[y][x] = new Item(parent.getTexture(temp));
-                }
+    public void setTerrain(BufferedImage terrain, int YTile, int XTile) {
+        this.terrains[YTile][XTile] = terrain;
     }
-    private void readMapData(Scanner scanner){
+
+    public void setSprite(Sprite sprite, int YTile, int XTile) {
+        this.sprites[YTile][XTile] = sprite;
+    }
+
+    public BufferedImage getTerrain(int YTile, int XTile) {
+        return this.terrains[YTile][XTile];
+    }
+
+    public Sprite getSprite(int YTile, int XTile) {
+        return this.sprites[YTile][XTile];
+    }
+
+    public Sprite getItem(int YTile, int XTile) {
+        return this.items[YTile][XTile];
+    }
+     /*
+       loadMap first reads in the png files of the appropriate tile.
+       It scans the text file map.txt and loads the appropriate png image into the instance variable tiles.
+       Tiles is later used  by paintComponent to actually make the tiles appear.
+     */
+
+    public void update(double delta) {
+        for (int h = 0; h < height; h++)
+            for (int w = 0; w < width; w++)
+                if (sprites[h][w] != null)
+                    sprites[h][w].update(delta);
+    }
+
+    private void readMapData(Scanner scanner) {
         String temp;
 
         for (int y = 0; y < height; ++y)
@@ -103,7 +75,7 @@ public class MapSection {
                 }
     }
 
-    private void readSpriteData(Scanner scanner){
+    private void readSpriteData(Scanner scanner) {
         String temp;
 
         for (int y = 0; y < height; ++y)
@@ -111,8 +83,20 @@ public class MapSection {
                 if (scanner.hasNext()) {
                     temp = scanner.next();
                     if (!temp.equals(".")) {
-                        this.sprites[y][x] = new GenericSprite(parent.getTexture(temp));
+                        this.sprites[y][x] = new GenericStructure(parent.getTexture(temp));
                     }
                 }
+    }
+
+    boolean removeSprite (Sprite s) {
+        for (int y = 0; y < height; ++y){
+            for (int x = 0; x < width; ++x){
+                if (sprites[y][x] == s) {
+                    setSprite(null, y, x);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

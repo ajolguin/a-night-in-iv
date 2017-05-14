@@ -5,46 +5,25 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Stream;
-import java.nio.file.Files;
 
 /**
  * Created by kovlv on 5/6/2017.
  */
 public class GameModel {
-    ArrayList<MapSection> Scene;
+    static final int PIXEL_SIZE = 32;
     Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
-    public int currentMapX;
-    public int currentMapY;
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     Player player;
     String name;
     int mapWidth;
     int mapHeight;
-    int sceneWidth;
-    int sceneHeight;
     MapSection[][] sections;
-
-    public GameModel(int mapWidth, int mapHeight, int sceneWidth, int sceneHeight) {
-        this.mapWidth = mapWidth;
-        this.mapHeight = mapHeight;
-        this.sceneWidth = sceneWidth;
-        this.sceneHeight = sceneHeight;
-    }
+    private int currentMapX;
+    private int currentMapY;
+    private int sceneWidth;
+    private int sceneHeight;
 
     public GameModel(String name) {
         this.name = name;
@@ -73,9 +52,19 @@ public class GameModel {
                         sections[y][x] = new MapSection(dir, temp, mapHeight, mapWidth, this);
                     }
                 }
+
+        setPlayer(new Player(3, 3, 16, 8, "player", this));
     }
 
-    private void loadTextures(String path){
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    private void loadTextures(String path) {
         File folder = new File(path);
         for (final File fileEntry : folder.listFiles()) {
             if (!fileEntry.isDirectory()) {
@@ -88,9 +77,9 @@ public class GameModel {
                 try {
                     System.out.println("name is:" + fileEntry.getName() + ":" + name);
                     String filepath = "/resources/" + this.name + "/texture/" + fileEntry.getName();
-                    URL fileURL = getClass().getResource( filepath );
+                    URL fileURL = getClass().getResource(filepath);
                     textures.put(name, ImageIO.read(fileURL));
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -98,7 +87,7 @@ public class GameModel {
         System.out.println(textures);
     }
 
-    public BufferedImage getTexture(String name){
+    public BufferedImage getTexture(String name) {
         return textures.get(name);
     }
 
@@ -106,7 +95,7 @@ public class GameModel {
         return sections[currentMapY][currentMapX];
     }
 
-    public MapSection getMapInDirection(int Y, int X){
+    public MapSection getMapInDirection(int Y, int X) {
         int newX = currentMapX + X;
         int newY = currentMapY + Y;
         if (newX < 0 || newY < 0 || newX > sceneWidth - 1 || newY > sceneHeight - 1)
@@ -114,7 +103,8 @@ public class GameModel {
         else
             return sections[newY][newX];
     }
-    public void  moveMapInDirection(int Y, int X){
+
+    public void moveMapInDirection(int Y, int X) {
         int newX = currentMapX + X;
         int newY = currentMapY + Y;
         if (!(newX < 0 || newY < 0 || newX > sceneWidth - 1 || newY > sceneHeight - 1)) {
