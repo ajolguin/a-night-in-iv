@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="junit-4.8.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cs56-games-treasure-hunter-master/lib/junit-4.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.8.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
