@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 /**
  * Created by kovlv on 5/7/2017.
  */
-class MoveAction extends AbstractAction {
+public class MoveAction extends AbstractAction {
     Player player;
     int x = 0;
     int y = 0;
@@ -22,7 +22,8 @@ class MoveAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        player.moveInDirection(y, x);
+        if (!player.isMoving())
+            player.moveInDirection(y, x);
     }
 
 }

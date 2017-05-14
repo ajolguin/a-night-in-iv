@@ -12,6 +12,33 @@ import static org.junit.Assert.assertEquals;
  * @author Alex Wood
  * @version CS56, Winter 2012, issue 0000573
  * @see Player
+ * <p>
+ * test constructor from PlayerTest
+ * @see Player#Player(int xTile, int yTile, int numSprites, int currentSprite, String name)
+ * <p>
+ * test getCurrentSpriteIndex method
+ * @see Player#getCurrentSpriteIndex()
+ * <p>
+ * test setSprite method
+ * @see Player#setSprite(int sprite)
+ * <p>
+ * test getXPos method
+ * @see Player#getXPos()
+ * <p>
+ * test getYPos method
+ * @see Player#getYPos()
+ * <p>
+ * test setTiles method
+ * @see Player#setTiles(int xTile, int yTile)
+ * <p>
+ * test moveTo method
+ * @see Player#moveTo(int xPos, int yPos)
+ * <p>
+ * test isMovable method
+ * @see Player#isMovable()
+ * <p>
+ * test setMovable method
+ * @see Player#setMovable(boolean movable)
  *//*
 
 
@@ -19,10 +46,10 @@ public class PlayerTest {
 
     */
 /**
-     * test constructor from PlayerTest
-     *
-     * @see Player#Player(int xTile, int yTile, int numSprites, int currentSprite, String name)
-     *//*
+ * test constructor from PlayerTest
+ *
+ * @see Player#Player(int xTile, int yTile, int numSprites, int currentSprite, String name)
+ *//*
 
 
     @Test
@@ -41,10 +68,10 @@ public class PlayerTest {
 
     */
 /**
-     * test getCurrentSpriteIndex method
-     *
-     * @see Player#getCurrentSpriteIndex()
-     *//*
+ * test getCurrentSpriteIndex method
+ *
+ * @see Player#getCurrentSpriteIndex()
+ *//*
 
     @Test
     public void testGetCurrentSprite() {
@@ -55,10 +82,10 @@ public class PlayerTest {
 
     */
 /**
-     * test setSprite method
-     *
-     * @see Player#setSprite(int sprite)
-     *//*
+ * test setSprite method
+ *
+ * @see Player#setSprite(int sprite)
+ *//*
 
     @Test
     public void testSetSprite() {
@@ -72,10 +99,10 @@ public class PlayerTest {
 
     */
 /**
-     * test getXPos method
-     *
-     * @see Player#getXPos()
-     *//*
+ * test getXPos method
+ *
+ * @see Player#getXPos()
+ *//*
 
     @Test
     public void testGetXPos() {
@@ -86,10 +113,10 @@ public class PlayerTest {
 
     */
 /**
-     * test getYPos method
-     *
-     * @see Player#getYPos()
-     *//*
+ * test getYPos method
+ *
+ * @see Player#getYPos()
+ *//*
 
     @Test
     public void testGetYPos() {
@@ -100,10 +127,10 @@ public class PlayerTest {
 
     */
 /**
-     * test setTiles method
-     *
-     * @see Player#setTiles(int xTile, int yTile)
-     *//*
+ * test setTiles method
+ *
+ * @see Player#setTiles(int xTile, int yTile)
+ *//*
 
     @Test
     public void testSetTiles() {
@@ -117,10 +144,10 @@ public class PlayerTest {
 
     */
 /**
-     * test moveTo method
-     *
-     * @see Player#moveTo(int xPos, int yPos)
-     *//*
+ * test moveTo method
+ *
+ * @see Player#moveTo(int xPos, int yPos)
+ *//*
 
     @Test
     public void testMoveTo() {
@@ -133,10 +160,10 @@ public class PlayerTest {
 
     */
 /**
-     * test isMovable method
-     *
-     * @see Player#isMovable()
-     *//*
+ * test isMovable method
+ *
+ * @see Player#isMovable()
+ *//*
 
     @Test
     public void testIsMovable() {
@@ -148,10 +175,10 @@ public class PlayerTest {
 
     */
 /**
-     * test setMovable method
-     *
-     * @see Player#setMovable(boolean movable)
-     *//*
+ * test setMovable method
+ *
+ * @see Player#setMovable(boolean movable)
+ *//*
 
     @Test
     public void testSetMovable() {

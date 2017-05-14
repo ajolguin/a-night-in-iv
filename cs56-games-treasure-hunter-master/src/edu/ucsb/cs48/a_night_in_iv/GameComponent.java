@@ -3,9 +3,6 @@ package edu.ucsb.cs48.a_night_in_iv;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.*;
-import java.awt.Font;
-import java.awt.Rectangle;
-import java.awt.Color;
 
 /**
  * A component that draws the map for the treasure hunter game by Alex Wood
@@ -21,18 +18,12 @@ import java.awt.Color;
 
 public class GameComponent extends JComponent {
 
+    GameModel game;
+    RepaintManager paintManager = RepaintManager.currentManager(this);
+
     public void setGame(GameModel game) {
         this.game = game;
     }
-
-    GameModel game;
-
-    public static final int PIXEL_SIZE = 32;
-
-    public String message = "";
-
-    public RepaintManager paintManager = RepaintManager.currentManager(this);
-
 
     /*
       paintComponent: It draws all of the tiles on the map. Also loads the player sprite.
@@ -46,55 +37,28 @@ public class GameComponent extends JComponent {
         // probably draws the tiles
         for (int h = 0; h < map.height; h++)
             for (int w = 0; w < map.width; w++)
-                g.drawImage(map.getTerrain(h, w), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
+                g.drawImage(map.getTerrain(h, w), w * game.PIXEL_SIZE, h * game.PIXEL_SIZE, null);
 
         for (int h = 0; h < map.height; h++)
             for (int w = 0; w < map.width; w++)
-                if ( map.getSprite(h,w) != null)
-                    g.drawImage(map.getSprite(h,w).getImage(), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
+                if (map.getSprite(h, w) != null)
+                    g.drawImage(map.getSprite(h, w).getImage(), w * game.PIXEL_SIZE, h * game.PIXEL_SIZE, null);
 
         for (int h = 0; h < map.height; h++)
             for (int w = 0; w < map.width; w++)
-                if ( map.getItem(h,w) != null)
-                    g.drawImage(map.getItem(h,w).getImage(), w * PIXEL_SIZE, h * PIXEL_SIZE, null);
+                if (map.getItem(h, w) != null)
+                    g.drawImage(map.getItem(h, w).getImage(), w * game.PIXEL_SIZE, h * game.PIXEL_SIZE, null);
 
         Player player = game.getPlayer();
         g.drawImage(player.getPlayerImage(), player.getXPos(), player.getYPos(), null);
 
         Graphics2D g2 = (Graphics2D) g;
-        if (!message.equals("")) {
-            g2.setColor(new Color(1f, 0f, 0f, .5f));
-            g2.fill(new Rectangle(100, 0, 250, 100));
-            g2.setFont(new Font(null, Font.BOLD, 20));
-            g2.setColor(Color.BLACK);
-            g2.drawString(message, 110, 50);
-        }
 
     }
 
     /* Draws the player sprite onto a new tile */
     public void updatePlayer() {
         paintManager.addDirtyRegion(this, game.getPlayer().getXPos() - 10, game.getPlayer().getYPos() - 10, 60, 60);
-    }
-
-
-
-    /* changes the message instance variable
-     */
-    public void setMessage(int treasure_number) {
-        message = "TREASURE " + treasure_number + " FOUND!";
-        new Thread(new MessageThread(this)).start();
-    }
-
-    /* changes the message with final
-     */
-    public void setMessageFinal(boolean answer) {
-        if (answer) {
-            message = "YOU WIN!";
-            new Thread(new MessageThread(this)).start();
-            //TODO: fix the problem of the time a message box appear
-            //TODO: find a way to pause the game
-        }
     }
 
 }

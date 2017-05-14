@@ -10,7 +10,7 @@ public class GenericSprite extends Sprite {
     private BufferedImage image;
 
     //GenericSprite constructor
-    public GenericSprite(BufferedImage image){
+    public GenericSprite(BufferedImage image) {
         this.image = image;
     }
 
