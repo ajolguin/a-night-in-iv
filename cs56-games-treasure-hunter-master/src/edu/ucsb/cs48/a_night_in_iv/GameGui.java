@@ -22,6 +22,7 @@ public class GameGui {
         component = new GameComponent();
         component.setOpaque(true);
         game = new GameModel("scene1");
+        generateGenericItem(5, game, "COKE", 5);
         component.setGame(game);
 
         // Set the name and frame size
@@ -58,7 +59,7 @@ public class GameGui {
         component.registerKeyboardAction(new MoveAction(game.getPlayer(), 1, 0), KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_FOCUSED);
     }
 
-/*    public void generateGenericSprite(int howMany, BufferedImage image) {
+    public void generateGenericItem(int howMany, GameModel game, String textureID, int boM) {
         if (howMany == 0) System.out.println("make at least one treasure!");
 
         for (int i = 0; i < howMany; i++) {
@@ -67,11 +68,11 @@ public class GameGui {
                 xTile = (int) (Math.random() * 24);
                 yTile = (int) (Math.random() * 18);
             }while ( game.getCurrentMap().getSprite(yTile, xTile) != null );
-            game.getCurrentMap().setSprite(new GenericSprite(image), yTile, xTile);
+            game.getCurrentMap().setSprite(new GenericItem(game.getTexture(textureID), boM, game.getCurrentMap()), yTile, xTile);
             System.out.println(yTile + " : " + xTile);
         }
 
-    }*/
+    }
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();

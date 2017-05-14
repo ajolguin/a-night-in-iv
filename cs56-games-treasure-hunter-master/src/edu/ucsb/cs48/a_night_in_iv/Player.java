@@ -23,6 +23,7 @@ public class Player extends Sprite {
     private int yDir;
     private int xTile;
     private int yTile;
+    private int blackout;
     private ArrayList<BufferedImage> sprites;
     private int currentSprite = 0;
 
@@ -108,7 +109,8 @@ public class Player extends Sprite {
             }
             return;
         }
-        if (game.getCurrentMap().getSprite(yTile, xTile) != null)
+        Sprite targetSprite = game.getCurrentMap().getSprite(yTile, xTile);
+        if (targetSprite != null && !targetSprite.tryPassThrough(this))
             return;
 
         setDirections(yDir, xDir);
@@ -135,10 +137,17 @@ public class Player extends Sprite {
         setPositions(newY, newX);
     }
 
-    public int getCurrentSpriteIndex() {
+    int getCurrentSpriteIndex() {
         return currentSprite;
     }
 
+    void modifyBlackout(int boModifier){
+        this.blackout += boModifier;
+    }
+
+    int getBlackout(){
+        return blackout;
+    }
 
     BufferedImage getPlayerImage() {
         return sprites.get(currentSprite);
@@ -147,5 +156,10 @@ public class Player extends Sprite {
     @Override
     BufferedImage getImage() {
         return null;
+    }
+
+    @Override
+    boolean tryPassThrough(Player player) {
+        throw new java.lang.RuntimeException("player should not be interacting with him or her self");
     }
 }

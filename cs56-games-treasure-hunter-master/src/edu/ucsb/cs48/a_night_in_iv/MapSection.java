@@ -29,7 +29,6 @@ public class MapSection {
         //CHANGES
         Scanner itemScanner = new Scanner(getClass().getResourceAsStream(dir + "item" + name + ".txt"));
         this.items = new Sprite[height][width];
-        readItemData(itemScanner);
     }
 
     public void setTerrain(BufferedImage terrain, int YTile, int XTile) {
@@ -64,18 +63,6 @@ public class MapSection {
                     sprites[h][w].update(delta);
     }
 
-    private void readItemData(Scanner scanner) {
-        String temp;
-
-        for (int y = 0; y < height; ++y)
-            for (int x = 0; x < width; ++x)
-                if (scanner.hasNext()) {
-                    temp = scanner.next();
-                    if (!temp.equals("."))
-                        this.items[y][x] = new Item(parent.getTexture(temp));
-                }
-    }
-
     private void readMapData(Scanner scanner) {
         String temp;
 
@@ -96,8 +83,20 @@ public class MapSection {
                 if (scanner.hasNext()) {
                     temp = scanner.next();
                     if (!temp.equals(".")) {
-                        this.sprites[y][x] = new GenericSprite(parent.getTexture(temp));
+                        this.sprites[y][x] = new GenericStructure(parent.getTexture(temp));
                     }
                 }
+    }
+
+    boolean removeSprite (Sprite s) {
+        for (int y = 0; y < height; ++y){
+            for (int x = 0; x < width; ++x){
+                if (sprites[y][x] == s) {
+                    setSprite(null, y, x);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
