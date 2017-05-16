@@ -5,18 +5,16 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- * A component that draws the Player  by Alex Wood
+ * Representing the Player of the game
+ * Contains both the game mechanics related to the player and sprite data
  *
- * @author Alex Wood (UCSB, CS56 W12, 2/16/2012)
- * @author Danielle Dodd and George Lieu
- * @version for CS56, W16, UCSB, 2/18/2016
+ * @see Sprite
  */
 
 
 public class Player extends Sprite {
     GameModel game;
-    // private instance variables
-    private boolean movable = true;
+
     private int xPos;
     private int yPos;
     private int xDir;
@@ -27,25 +25,45 @@ public class Player extends Sprite {
     private ArrayList<BufferedImage> sprites;
     private int currentSprite = 0;
 
-    //player constructor
+    /**
+     * Constructs the Player object within the GameModel
+     * @param yTile Starting Y coordinate
+     * @param xTile Starting X coordinate
+     * @param numSprites Number of different animation sprites associated with Player
+     * @param currentSprite Initial sprite Player loads as
+     * @param name Name of PLayer
+     * @param game GameModel object player will exist in
+     *
+     * @see GameModel
+     */
     public Player(int yTile, int xTile, int numSprites, int currentSprite, String name, GameModel game) {
         this.game = game;
         try {
             sprites = new ArrayList<BufferedImage>();
             for (int i = 0; i < numSprites; i++)
-                sprites.add(ImageIO.read(getClass().getResource(GameGui.resourcesDir + "player2/" + name + i + ".png")));
+                sprites.add(ImageIO.read(getClass().getResource(GameGUI.resourcesDir + "player2/" + name + i + ".png")));
         } catch (Exception e) {
             e.printStackTrace();
         }
         this.currentSprite = currentSprite;
         this.setTiles(yTile, xTile);
-        this.setPositions(xTile * game.PIXEL_SIZE, yTile * game.PIXEL_SIZE);
+        this.setPositions(yTile * game.PIXEL_SIZE, xTile * game.PIXEL_SIZE);
     }
 
+    /**
+     * Returns the X coordinate of the player
+     * Coordinates determined by map size
+     * @return X coordinate of Player
+     */
     int getXTile() {
         return xTile;
     }
 
+    /**
+     * Returns Y coordinate of player in current map
+     * Coordinates are determined by map size
+     * @return Y coordinate of Player
+     */
     int getYTile() {
         return yTile;
     }

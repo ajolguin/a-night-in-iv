@@ -16,7 +16,6 @@ public class StartMenu extends JPanel{
 		levelSelectButton.addActionListener(new levelSelectButtonHandler());
 		JButton helpMenuButton = new JButton("Help");
 		helpMenuButton.addActionListener(new helpMenuButtonHandler());
-		
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -33,19 +32,17 @@ public class StartMenu extends JPanel{
 		
 				
 	}
+
 }
-
-
 
 class levelSelectButtonHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e){
-		GameStart.openLevelSelectMenu();
+		MenuGUI.openLevelSelectMenu();
 	}
 }
 
 class helpMenuButtonHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e){
-		//GameStart.openHelpMenu();
 	}
 }
 

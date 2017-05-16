@@ -10,9 +10,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by Karl Wang (kovlv) on 5/6/2017.
  * Class that constructs the entire game model based upon the game component built
  * Each individual MapSection is populated with various textures of sprites determined in corresponding .txt files
+ *
+ * Created by Karl Wang (kovlv) on 5/6/2017.
  * @see GameComponent for how game component builds the map sections
  * @see MapSection for how
  */
@@ -33,7 +34,7 @@ public class GameModel {
         this.name = name;
         String dir = "/resources/" + name + "/";
 
-        Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + "scene.txt"));
+        Scanner scanner = new Scanner(getClass().getResourceAsStream(dir + "layoutVars.txt"));
 
         sceneWidth = scanner.nextInt();
         sceneHeight = scanner.nextInt();
@@ -45,7 +46,7 @@ public class GameModel {
 
         String temp;
         //Must load texture first before loading the sections
-        loadTextures("./src/resources/" + name + "/texture/");
+        loadTextures("./src/resources/" + name + "/textures/");
         for (int y = 0; y < sceneHeight; ++y)
             for (int x = 0; x < sceneWidth; ++x)
                 if (scanner.hasNext()) {
@@ -80,7 +81,7 @@ public class GameModel {
                 }
                 try {
                     System.out.println("name is:" + fileEntry.getName() + ":" + name);
-                    String filepath = "/resources/" + this.name + "/texture/" + fileEntry.getName();
+                    String filepath = "/resources/" + this.name + "/textures/" + fileEntry.getName();
                     URL fileURL = getClass().getResource(filepath);
                     textures.put(name, ImageIO.read(fileURL));
                 } catch (IOException e) {
@@ -117,4 +118,6 @@ public class GameModel {
         }
 
     }
+
+
 }

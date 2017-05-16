@@ -13,8 +13,12 @@ public class MoveAction extends AbstractAction {
     int x = 0;
     int y = 0;
 
-    /*
-      The MoveAction method changes the player png file so that it appears he turns in the direction the user wants him to walk in.
+    /**
+     * Changes the players PNG sprite file based on the corresponding increment in X/Y
+     * Sprite corresponds to direction the user wants the Player to walk in
+     * @param player
+     * @param x
+     * @param y
      */
     public MoveAction(Player player, int x, int y) {
         this.player = player;
