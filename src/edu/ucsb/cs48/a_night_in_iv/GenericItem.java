@@ -34,4 +34,5 @@ public class GenericItem extends Sprite {
 
     @Override
     void update(double delta){}
+
 }

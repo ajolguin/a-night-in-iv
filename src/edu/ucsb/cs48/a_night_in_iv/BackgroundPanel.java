@@ -8,7 +8,7 @@ public class BackgroundPanel extends JPanel {
 		
  public BackgroundPanel() {
     MediaTracker mt = new MediaTracker(this); 
-	bgimage = Toolkit.getDefaultToolkit().getImage("start.jpg");			
+	bgimage = Toolkit.getDefaultToolkit().getImage("./src/resources/gameData/start.jpg");
     mt.addImage(bgimage, 0);
     try {
       mt.waitForAll();

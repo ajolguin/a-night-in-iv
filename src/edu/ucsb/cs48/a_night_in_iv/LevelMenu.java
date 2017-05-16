@@ -13,6 +13,8 @@ public class LevelMenu extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(background, BorderLayout.CENTER);
 		//add buttons
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new backButtonHandler());
 		JButton level1Button = new JButton("Level 1");
 		level1Button.addActionListener(new level1ButtonHandler());
 		JButton level2Button = new JButton("Level 2");
@@ -22,6 +24,7 @@ public class LevelMenu extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(50, 0, 0, 0);
 		gbc.fill = gbc.NONE;
+		list.add(backButton, gbc);
 		list.add(level1Button, gbc);
 		list.add(level2Button, gbc);
 		list.setOpaque(false);
@@ -37,7 +40,7 @@ public class LevelMenu extends JPanel{
 }
 class level1ButtonHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e){
-		return;
+		MenuGUI.exitMenus();
 	}
 }
 
@@ -46,4 +49,9 @@ class level2ButtonHandler implements ActionListener{
 		return;
 	}
 }
+
+class backButtonHandler implements ActionListener {
+	public void actionPerformed(ActionEvent e) { MenuGUI.backToStart(); }
+
+	}
 

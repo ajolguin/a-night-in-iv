@@ -11,7 +11,7 @@
     <property name="javadocURL" value="${webBaseURL}/${projectName}/javadoc" />
     <property name="jwsDest" value="${webRoot}/${projectName}/jws" />
     <property name="jwsURL" value="${webBaseURL}/${projectName}/jws" />
-    <property name="mainClass" value="edu.ucsb.cs48.a_night_in_iv.GameGui"/>
+    <property name="mainClass" value="edu.ucsb.cs48.a_night_in_iv.GameGUI"/>
 
     <!-- include all .jar files in lib/ directory -->
     <path id="path.lib" >

@@ -19,17 +19,26 @@ import javax.swing.*;
 public class GameComponent extends JComponent {
 
     GameModel game;
-    RepaintManager paintManager = RepaintManager.currentManager(this);
 
+    /* RepaintManager currently unused, but could be useful later on
+    //RepaintManager paintManager = RepaintManager.currentManager(this);
+
+    /**
+     * Ties the GameModel with the GameComponent
+     * @param game
+     * The GameModel that needs to be connected to the map drawn by GameComponent
+     * @see GameModel
+     */
     public void setGame(GameModel game) {
         this.game = game;
     }
 
-    /*
-      paintComponent: It draws all of the tiles on the map. Also loads the player sprite.
-      When player find the treasure, the message variable value changes and the "TREASURE # FOUND" message box is drawn onto the screen.
-
-    */
+    /**
+     * Overrided paintComponent method from JComponent
+     * Draws the map layers (Terrain and Sprite) based on the map)
+     * @param g
+     * @see GameModel
+     */
     @Override
     public void paintComponent(Graphics g) {
         MapSection map = game.getCurrentMap();
@@ -51,9 +60,11 @@ public class GameComponent extends JComponent {
 
     }
 
-    /* Draws the player sprite onto a new tile */
+    /* Currently unused but might be in the future
+     //Draws the player sprite onto a new tile
     public void updatePlayer() {
         paintManager.addDirtyRegion(this, game.getPlayer().getXPos() - 10, game.getPlayer().getYPos() - 10, 60, 60);
     }
+    */
 
 }
