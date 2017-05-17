@@ -69,7 +69,8 @@ public class Player extends Sprite {
     }
 
     public void setTiles(int yTile, int xTile) {
-        game.getCurrentMap().setSprite(null, this.yTile, this.xTile);
+        if(game.getCurrentMap().getSprite(this.yTile, this.xTile) == this)
+            game.getCurrentMap().setSprite(null, this.yTile, this.xTile);
         game.getCurrentMap().setSprite(this, yTile, xTile);
         this.xTile = xTile;
         this.yTile = yTile;
