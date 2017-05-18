@@ -3,6 +3,9 @@ package edu.ucsb.cs48.a_night_in_iv;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.*;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.Color;
 
 /**
  * Main class that that draws the map for the game
@@ -19,6 +22,7 @@ import javax.swing.*;
 public class GameComponent extends JComponent {
 
     GameModel game;
+    String message;
 
     /* RepaintManager currently unused, but could be useful later on
     //RepaintManager paintManager = RepaintManager.currentManager(this);
@@ -57,6 +61,15 @@ public class GameComponent extends JComponent {
         g.drawImage(player.getPlayerImage(), player.getXPos(), player.getYPos(), null);
 
         Graphics2D g2 = (Graphics2D) g;
+
+        //draw text box when player wins game (ie when message is the win print statement)
+        if(!message.equals("")) {
+            g2.setColor(new Color(1f,0f,0f,.5f));
+            g2.fill(new Rectangle(100,0,250,100));
+            g2.setFont(new Font(null,Font.BOLD, 20));
+            g2.setColor(Color.BLACK);
+            g2.drawString(message, 110, 50);
+        }
 
     }
 

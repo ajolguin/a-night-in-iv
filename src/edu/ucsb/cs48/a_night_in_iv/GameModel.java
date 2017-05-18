@@ -22,6 +22,7 @@ public class GameModel {
     Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
     Player player;
     String name;
+    //String message;
     int mapWidth;
     int mapHeight;
     MapSection[][] sections;
