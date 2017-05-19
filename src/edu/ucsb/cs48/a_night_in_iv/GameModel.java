@@ -22,7 +22,7 @@ public class GameModel {
     Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
     Player player;
     String name;
-    //String message;
+    String message = "";
     int mapWidth;
     int mapHeight;
     MapSection[][] sections;
@@ -58,8 +58,6 @@ public class GameModel {
                         sections[y][x] = new MapSection(dir, temp, mapHeight, mapWidth, this);
                     }
                 }
-
-        setPlayer(new Player( 3, 3, 16, 8, "player", this , this.getCurrentMap() ));
     }
 
     public Player getPlayer() {

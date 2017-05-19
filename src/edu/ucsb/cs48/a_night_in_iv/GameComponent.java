@@ -22,7 +22,6 @@ import java.awt.Color;
 public class GameComponent extends JComponent {
 
     GameModel game;
-    String message = "";
 
     /* RepaintManager currently unused, but could be useful later on
     //RepaintManager paintManager = RepaintManager.currentManager(this);
@@ -63,12 +62,12 @@ public class GameComponent extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
 
         //draw text box when player wins game (ie when message is the win print statement)
-        if( !message.equals("")) {
+        if( !game.message.equals("")) {
             g2.setColor(new Color(1f,0f,0f,.5f));
             g2.fill(new Rectangle(100,0,250,100));
             g2.setFont(new Font(null,Font.BOLD, 20));
             g2.setColor(Color.BLACK);
-            g2.drawString(message, 110, 50);
+            g2.drawString(game.message, 110, 50);
         }
 
     }

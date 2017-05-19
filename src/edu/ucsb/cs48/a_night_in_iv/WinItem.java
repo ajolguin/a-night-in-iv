@@ -13,14 +13,9 @@ public class WinItem extends Sprite {
 
     private BufferedImage image;
     static Timer timer = new Timer();
-    private GameModel game;
-    private GameComponent gc;
-    static int seconds = 0;
-    public WinItem(BufferedImage image, GameComponent gc, MapSection map) {
+    public WinItem(BufferedImage image, MapSection map) {
         super(map);
         this.image = image;
-        //this.game = game;
-        this.gc = gc;
     }
 
     @Override
@@ -31,12 +26,12 @@ public class WinItem extends Sprite {
     @Override
     boolean tryPassThrough(Player player){
         //game.message = "You made it home!";
-        gc.message = "You made it home!";
+        map.parent.message = "You made it home!";
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 //game.message = "";
-                gc.message = "";
+                map.parent.message = "";
             }
         };
         timer.schedule(task,1000);
