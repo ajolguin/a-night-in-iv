@@ -109,6 +109,7 @@ public class Player extends Sprite {
         if (xTile < 0 || xTile > (game.mapWidth - 1) || yTile < 0 || yTile > (game.mapHeight - 1)) {
             MapSection newMap = game.getMapInDirection(yDir, xDir);
             if (newMap != null) {
+                removeFromMap();
                 game.moveMapInDirection(yDir, xDir);
                 this.setMap(game.getCurrentMap());
                 int newXTile = (getXTile() + xDir) % game.mapWidth;
