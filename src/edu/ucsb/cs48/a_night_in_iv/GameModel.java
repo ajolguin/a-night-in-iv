@@ -59,7 +59,7 @@ public class GameModel {
                     }
                 }
 
-        setPlayer(new Player(3, 3, 16, 8, "player", this));
+        setPlayer(new Player( 3, 3, 16, 8, "player", this , this.getCurrentMap() ));
     }
 
     public Player getPlayer() {

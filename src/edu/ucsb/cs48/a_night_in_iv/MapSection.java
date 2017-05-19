@@ -79,7 +79,7 @@ public class MapSection {
                 if (scanner.hasNext()) {
                     temp = scanner.next();
                     if (!temp.equals(".")) {
-                        this.sprites[y][x] = new GenericStructure(parent.getTexture(temp));
+                        this.sprites[y][x] = new GenericStructure(parent.getTexture(temp), this);
                     }
                 }
     }

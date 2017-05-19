@@ -15,12 +15,18 @@ import javax.imageio.ImageIO;
 public class Player extends Sprite {
     GameModel game;
 
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
     private int xPos;
     private int yPos;
     private int xDir;
     private int yDir;
-    private int xTile;
-    private int yTile;
     private int blackout;
     private ArrayList<BufferedImage> sprites;
     private int currentSprite = 0;
@@ -36,7 +42,8 @@ public class Player extends Sprite {
      *
      * @see GameModel
      */
-    public Player(int yTile, int xTile, int numSprites, int currentSprite, String name, GameModel game) {
+    public Player(int yTile, int xTile, int numSprites, int currentSprite, String name, GameModel game, MapSection map) {
+        super(map);
         this.game = game;
         try {
             sprites = new ArrayList<BufferedImage>();
@@ -68,14 +75,6 @@ public class Player extends Sprite {
         return yTile;
     }
 
-    public void setTiles(int yTile, int xTile) {
-        if(game.getCurrentMap().getSprite(this.yTile, this.xTile) == this)
-            game.getCurrentMap().setSprite(null, this.yTile, this.xTile);
-        game.getCurrentMap().setSprite(this, yTile, xTile);
-        this.xTile = xTile;
-        this.yTile = yTile;
-    }
-
     public void setPositions(int yPos, int xPos) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -88,14 +87,6 @@ public class Player extends Sprite {
 
     public void setSprite(int sprite) {
         currentSprite = sprite;
-    }
-
-    public int getXPos() {
-        return xPos;
-    }
-
-    public int getYPos() {
-        return yPos;
     }
 
     public void moveInDirection(int yDir, int xDir) {
@@ -119,6 +110,7 @@ public class Player extends Sprite {
             MapSection newMap = game.getMapInDirection(yDir, xDir);
             if (newMap != null) {
                 game.moveMapInDirection(yDir, xDir);
+                this.setMap(game.getCurrentMap());
                 int newXTile = (getXTile() + xDir) % game.mapWidth;
                 if (newXTile < 0) newXTile += game.mapWidth;
                 int newYTile = (getYTile() + yDir) % game.mapHeight;
@@ -156,10 +148,6 @@ public class Player extends Sprite {
         setPositions(newY, newX);
     }
 
-    int getCurrentSpriteIndex() {
-        return currentSprite;
-    }
-
     void modifyBlackout(int boModifier){
         this.blackout += boModifier;
     }
@@ -172,6 +160,7 @@ public class Player extends Sprite {
         return sprites.get(currentSprite);
     }
 
+    //do not use this method to paint player because it draws only on the tile, not in between.
     @Override
     BufferedImage getImage() {
         return null;

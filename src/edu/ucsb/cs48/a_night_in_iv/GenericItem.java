@@ -12,12 +12,11 @@ public class GenericItem extends Sprite {
 
     private BufferedImage image;
     private int boModifier;
-    private MapSection map;
 
     public GenericItem(BufferedImage image, int boModifier, MapSection map) {
+        super(map);
         this.image = image;
         this.boModifier = boModifier;
-        this.map = map;
     }
 
     @Override
@@ -28,7 +27,7 @@ public class GenericItem extends Sprite {
     @Override
     boolean tryPassThrough(Player player){
         player.modifyBlackout(boModifier);
-        map.removeSprite(this);
+        removeFromMap();
         return true;
     }
 

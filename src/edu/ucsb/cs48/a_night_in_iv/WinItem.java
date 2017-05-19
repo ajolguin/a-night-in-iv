@@ -1,6 +1,7 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
 import java.awt.image.BufferedImage;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,7 +16,8 @@ public class WinItem extends Sprite {
     private GameModel game;
     private GameComponent gc;
     static int seconds = 0;
-    public WinItem(BufferedImage image, GameComponent gc) {
+    public WinItem(BufferedImage image, GameComponent gc, MapSection map) {
+        super(map);
         this.image = image;
         //this.game = game;
         this.gc = gc;

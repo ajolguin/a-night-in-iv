@@ -12,7 +12,8 @@ public class GenericStructure extends Sprite {
 
     private BufferedImage image;
 
-    public GenericStructure(BufferedImage image) {
+    public GenericStructure(BufferedImage image, MapSection map) {
+        super(map);
         this.image = image;
     }
 

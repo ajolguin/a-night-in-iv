@@ -30,8 +30,8 @@ public class GameGUI {
         game = new GameModel("gameData");
         generateGenericItem(5, game, 1, 0, "COKE", 5);
         generateGenericItem(2, game, 0, 0, "MUSHROOM", 20);
-        generateWinItem(game, 0, 0, "TROPHY");
         component = new GameComponent();
+        generateWinItem(game, 0, 0, "T");
         component.setOpaque(true);
         component.setGame(game);
         addPlayerMovementBindings();
@@ -63,11 +63,9 @@ public class GameGUI {
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        do {
-            xTile = (int) .5 * game.mapWidth;
-            yTile = (int) .5 * game.mapHeight;
-        }while ( genericItemMapSect.getSprite(yTile, xTile) != null );
-        genericItemMapSect.setSprite(new GenericItem(game.getTexture(textureID), 0, genericItemMapSect), yTile, xTile);
+        xTile = (int)(.5 * game.mapWidth);
+        yTile = (int)(.5 * game.mapHeight);
+        genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), component, genericItemMapSect), yTile, xTile);
         System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
     }
 
