@@ -2,12 +2,22 @@ package edu.ucsb.cs48.a_night_in_iv;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.io.*;
+import java.net.*;
+import java.nio.file.*;
+import java.util.*;
+import java.util.stream.*;
 
 /**
  * Class that constructs the entire game model based upon the game component built
@@ -47,7 +57,12 @@ public class GameModel {
 
         String temp;
         //Must load texture first before loading the sections
-        loadTextures("./src/resources/" + name + "/textures/");
+        try {
+            loadTextures("/resources/" + name + "/textures/");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         for (int y = 0; y < sceneHeight; ++y)
             for (int x = 0; x < sceneWidth; ++x)
                 if (scanner.hasNext()) {
@@ -68,21 +83,31 @@ public class GameModel {
         this.player = player;
     }
 
-    private void loadTextures(String path) {
-        File folder = new File(path);
-        for (final File fileEntry : folder.listFiles()) {
-            if (!fileEntry.isDirectory()) {
-                System.out.println(fileEntry.getName());
-                String name = fileEntry.getName();
+    private void loadTextures(String path) throws URISyntaxException, IOException {
+
+
+        URI uri = getClass().getResource(path).toURI();
+        Path myPath;
+        if (uri.getScheme().equals("jar")) {
+            FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            myPath = fileSystem.getPath(path);
+        } else {
+            myPath = Paths.get(uri);
+        }
+
+        Stream<Path> walk = Files.walk(myPath, 1);
+        for (Iterator<Path> it = walk.iterator(); it.hasNext();){
+            Path fileEntry = it.next();
+            if(Files.isRegularFile(fileEntry)) {
+                System.out.println(fileEntry.getFileName());
+                String name = fileEntry.getFileName().toString();
                 int pos = name.lastIndexOf(".");
                 if (pos > 0) {
                     name = name.substring(0, pos);
                 }
                 try {
-                    System.out.println("name is:" + fileEntry.getName() + ":" + name);
-                    String filepath = "/resources/" + this.name + "/textures/" + fileEntry.getName();
-                    URL fileURL = getClass().getResource(filepath);
-                    textures.put(name, ImageIO.read(fileURL));
+                    System.out.println("name is:" + fileEntry.getFileName() + ":" + name);
+                    textures.put(name, ImageIO.read(Files.newInputStream(fileEntry)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
