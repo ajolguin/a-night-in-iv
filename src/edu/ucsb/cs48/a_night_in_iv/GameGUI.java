@@ -29,7 +29,7 @@ public class GameGUI {
         //frame = new JFrame();
         game = new GameModel("gameData");
         game.setPlayer(new Player( 3, 3, 16, 8, "player", game , game.getCurrentMap() ));
-        generateGenericItem(5, game, 1, 0, "COKE", 5);
+        generateGenericItem(5, game, 0, 1, "COKE", 5);
         generateGenericItem(2, game, 0, 0, "MUSHROOM", 20);
         component = new GameComponent();
         generateWinItem(game, 0, 0, "T");
