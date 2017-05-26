@@ -13,9 +13,9 @@ public class StartMenu extends JPanel{
 		this.add(background, BorderLayout.CENTER);
 		//add buttons
 		JButton levelSelectButton = new JButton("Level Select");
-		levelSelectButton.addActionListener(new levelSelectButtonHandler());
+		levelSelectButton.addActionListener( e -> MenuGUI.openLevelSelectMenu() );
 		JButton helpMenuButton = new JButton("Help");
-		helpMenuButton.addActionListener(new helpMenuButtonHandler());
+		helpMenuButton.addActionListener( e -> {} );
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -28,21 +28,8 @@ public class StartMenu extends JPanel{
 		list.setOpaque(false);
 		
 		background.setLayout(new BorderLayout());
-		background.add(list, BorderLayout.CENTER);		
-		
-				
+		background.add(list, BorderLayout.CENTER);
 	}
 
-}
-
-class levelSelectButtonHandler implements ActionListener{
-	public void actionPerformed(ActionEvent e){
-		MenuGUI.openLevelSelectMenu();
-	}
-}
-
-class helpMenuButtonHandler implements ActionListener{
-	public void actionPerformed(ActionEvent e){
-	}
 }
 
