@@ -40,6 +40,5 @@ public class MenuGUI {
         RunGame.fullFrame.repaint();
         RunGame.atMenus = false;
         RunGame.startGameGUI = true;
-
     }
 }

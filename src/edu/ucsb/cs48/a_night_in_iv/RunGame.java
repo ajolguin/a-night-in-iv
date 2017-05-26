@@ -68,8 +68,8 @@ public class RunGame {
 
         while(gameRunning)
         {
+            //wait here for button press form EDT
             if(startGameGUI && !atMenus) {
-                System.out.println("Got to the IF STARTGAMEGUI statement in Gameloop");
                 addGameGUI();
                 startGameGUI = false;
             }
@@ -91,8 +91,7 @@ public class RunGame {
                 // also print out current blackout bar variable every second
                 if (lastFpsTime >= 1000000000) {
                     System.out.println("(FPS: " + fps + ")");
-                    if(!startGameGUI && !atMenus) {
-                        System.out.println("Current blackout bar value: " + gGUI.game.getPlayer().getBlackout()); }
+                    System.out.println("Current blackout bar value: " + gGUI.game.getPlayer().getBlackout());
                     lastFpsTime = 0;
                     fps = 0;
                 }
