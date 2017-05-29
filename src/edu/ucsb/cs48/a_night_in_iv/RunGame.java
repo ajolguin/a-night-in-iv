@@ -1,6 +1,7 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -23,9 +24,10 @@ public class RunGame {
 
     private RunGame() {
         fullFrame = new JFrame();
-        fullFrame.setSize(16 + 24 * GameModel.PIXEL_SIZE, 40 + 18 * GameModel.PIXEL_SIZE);
+        fullFrame.getContentPane().setPreferredSize(new Dimension(24 * GameModel.PIXEL_SIZE, 18 * GameModel.PIXEL_SIZE));
         fullFrame.setTitle("A Night In IV");
         fullFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        fullFrame.pack();
         gGUI = new GameGUI();
         mGUI = new MenuGUI();
     }

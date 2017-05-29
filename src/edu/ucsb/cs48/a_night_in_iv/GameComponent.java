@@ -70,6 +70,8 @@ public class GameComponent extends JComponent {
             g2.drawString(game.message, 110, 50);
         }
 
+        g2.fill(new Rectangle(10,10,3*game.player.getBlackout(),10));
+
     }
 
     /* Currently unused but might be in the future
