@@ -14,7 +14,8 @@ import java.awt.*;
  * @see MenuGUI
  * Created by Matthew R on 5/14/2017.
  */
-public class RunGame {
+public class
+RunGame {
     static JFrame fullFrame;
     GameGUI gGUI;
     MenuGUI mGUI;

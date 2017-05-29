@@ -9,11 +9,11 @@ import java.util.TimerTask;
  * Created by Armin on 5/17/17.
  */
 
-public class WinItem extends Sprite {
+public class RingItem extends Sprite {
 
     private BufferedImage image;
     static Timer timer = new Timer();
-    public WinItem(BufferedImage image, MapSection map) {
+    public RingItem(BufferedImage image, MapSection map) {
         super(map);
         this.image = image;
     }
@@ -26,7 +26,7 @@ public class WinItem extends Sprite {
     @Override
     boolean tryPassThrough(Player player){
         //game.message = "You made it home!";
-        map.parent.message = "You made it home!";
+        map.parent.message = "You found a ring! It has no use. You feel prettier though.";
         TimerTask task = new TimerTask() {
             @Override
             public void run() {

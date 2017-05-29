@@ -70,7 +70,11 @@ public class GameComponent extends JComponent {
             g2.drawString(game.message, 110, 50);
         }
 
-        g2.fill(new Rectangle(10,10,3*game.player.getBlackout(),10));
+        g2.fill(new Rectangle(230, 546, 308, 23));
+        g2.setColor(Color.GREEN);
+        g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
+        g2.setColor(Color.WHITE);
+        g2.drawString(game.message, 110,50);
 
     }
 
