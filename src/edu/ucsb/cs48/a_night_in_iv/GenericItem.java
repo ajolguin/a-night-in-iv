@@ -26,9 +26,11 @@ public class GenericItem extends Sprite {
 
     @Override
     boolean tryPassThrough(Player player){
-        player.modifyBlackout(boModifier);
-        removeFromMap();
-        return true;
+        if(player.modifyBlackout(boModifier)) {
+            removeFromMap();
+            return true;
+        }
+        return false;
     }
 
     @Override

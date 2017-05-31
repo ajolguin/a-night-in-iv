@@ -149,12 +149,26 @@ public class Player extends Sprite {
         setPositions(newY, newX);
     }
 
-    void modifyBlackout(int boModifier){
-        this.blackout += boModifier;
+    boolean modifyBlackout(int boModifier){
+        if( (boModifier < 0) && (this.getBlackout() == 0) ){
+            return false;
+        }
+        else if( (-boModifier >= this.getBlackout()) && (this.getBlackout() != 0)){
+            this.setBlackout(0);
+            return true;
+        }
+        else{
+            this.blackout += boModifier;
+            return true;
+        }
     }
 
     int getBlackout(){
         return blackout;
+    }
+
+    void setBlackout (int BO) {
+        this.blackout = BO;
     }
 
     BufferedImage getPlayerImage() {
