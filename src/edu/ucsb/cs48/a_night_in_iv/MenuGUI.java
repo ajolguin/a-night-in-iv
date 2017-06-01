@@ -1,7 +1,5 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
-import javax.swing.*;
-
 /**
  * Represents the entire GUI of all Menus
  * Modifies the frame of RunGame statically depending on button input
@@ -14,10 +12,12 @@ import javax.swing.*;
 public class MenuGUI {
     public static StartMenu sMenu;
     public static LevelMenu lvlMenu;
+    public static WinMenu wMenu;
 
     public MenuGUI() {
         sMenu = new StartMenu();
         lvlMenu = new LevelMenu();
+        wMenu = new WinMenu();
     }
 
     public static void openLevelSelectMenu(){

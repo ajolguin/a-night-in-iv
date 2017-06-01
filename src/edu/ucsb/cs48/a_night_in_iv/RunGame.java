@@ -55,6 +55,15 @@ RunGame {
     }
 
     /**
+     * Adds the end game menu for when the player completes a level
+     */
+    public void addWinGUI() {
+        fullFrame.add(MenuGUI.wMenu);
+        MenuGUI.wMenu.display(fullFrame);
+        gGUI.game.winGame = false;
+    }
+
+    /**
      * main game loop of entire project
      * allows GameGUI to be continuously redrawn smoothly
      */
@@ -72,10 +81,8 @@ RunGame {
         while(gameRunning)
         {
             //wait here for button press form EDT
-            if(startGameGUI && !atMenus) {
-                addGameGUI();
-                startGameGUI = false;
-            }
+            if(startGameGUI && !atMenus) { addGameGUI(); }
+            else if(gGUI.game.winGame) { addWinGUI(); }
             else {
                 // work out how long its been since the last update, this
                 // will be used to calculate how far the entities should
