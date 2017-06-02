@@ -61,7 +61,7 @@ public class GameGUI {
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = (int)(.5 * game.mapWidth);
+        xTile = 7;//(int)(.5 * game.mapWidth);
         yTile = (int)(.5 * game.mapHeight);
         genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
         System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
@@ -70,8 +70,8 @@ public class GameGUI {
     private void generateRingItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = (int)(.5 * game.mapWidth);
-        yTile = (int)(.5 * game.mapHeight);
+        xTile = 13;//(int)(.5 * game.mapWidth);
+        yTile = 0; //(int)(.5 * game.mapHeight);
         genericItemMapSect.setSprite(new RingItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
         System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
     }
