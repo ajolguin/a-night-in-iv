@@ -32,7 +32,8 @@ public class GameModel {
     Map<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
     Player player;
     String name;
-    boolean winGame;
+    boolean gameWon = false;
+    boolean gameLost = false;
     String message = "";
     int mapWidth;
     int mapHeight;

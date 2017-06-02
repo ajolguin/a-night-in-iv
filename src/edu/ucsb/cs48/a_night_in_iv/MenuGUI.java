@@ -12,12 +12,12 @@ package edu.ucsb.cs48.a_night_in_iv;
 public class MenuGUI {
     public static StartMenu sMenu;
     public static LevelMenu lvlMenu;
-    public static WinMenu wMenu;
+    public static EndLevelMenu wMenu;
 
     public MenuGUI() {
         sMenu = new StartMenu();
         lvlMenu = new LevelMenu();
-        wMenu = new WinMenu();
+        wMenu = new EndLevelMenu();
     }
 
     public static void openLevelSelectMenu(){

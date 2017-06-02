@@ -159,6 +159,9 @@ public class Player extends Sprite {
         }
         else{
             this.blackout += boModifier;
+            if(this.getBlackout() >= 100) {
+                game.gameLost = true;
+            }
             return true;
         }
     }
@@ -167,7 +170,7 @@ public class Player extends Sprite {
         return blackout;
     }
 
-    void setBlackout (int BO) {
+    private void setBlackout (int BO) {
         this.blackout = BO;
     }
 
