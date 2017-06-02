@@ -8,22 +8,26 @@ import javax.swing.*;
  */
 public class EndLevelMenu extends JOptionPane {
 
+    public final static int MAIN_MENU = 0;
+    public final static int RESTART = 1;
+    public final static int NEXT_LEVEL = 2;
+
     public EndLevelMenu(){
         super();
     }
 
-    public void showWinDialog(JFrame parent){
+    public int showWinDialog(JFrame parent){
         String[] options = {"Return to Main Menu", "Restart level", "Next level"};
-        this.showOptionDialog(parent,
+        return this.showOptionDialog(parent,
                 "You've survived the perils of IV.",
                 "", JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);
     }
 
-    public void showLoseDialog(JFrame parent){
+    public int showLoseDialog(JFrame parent){
         String[] options = {"Return to Main Menu", "Restart level"};
-        this.showOptionDialog(parent,
+        return this.showOptionDialog(parent,
                 "YOU BOOZE, YOU LOSE!!!",
                 "", JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,

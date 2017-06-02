@@ -54,6 +54,15 @@ RunGame {
         startGameGUI = false;
     }
 
+    public void removeGameGUI() {
+        fullFrame.remove(gGUI.component);
+        fullFrame.add(MenuGUI.sMenu);
+        gGUI.component.validate();
+        gGUI.component.repaint();
+        fullFrame.revalidate();
+        fullFrame.repaint();
+    }
+
     /**
      * main game loop of entire project
      * allows GameGUI to be continuously redrawn smoothly
@@ -75,13 +84,21 @@ RunGame {
             if(startGameGUI && !atMenus) { addGameGUI(); }
             else if(gGUI.game.gameWon) {
                 fullFrame.add(MenuGUI.wMenu);
-                MenuGUI.wMenu.showWinDialog(fullFrame);
+                int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
                 gGUI.game.gameWon = false;
+                if(choice == MenuGUI.wMenu.MAIN_MENU) {
+                    fullFrame.remove(MenuGUI.wMenu);
+                    removeGameGUI();
+                }
             }
             else if(gGUI.game.gameLost) {
                 fullFrame.add(MenuGUI.wMenu);
-                MenuGUI.wMenu.showWinDialog(fullFrame);
+                int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
                 gGUI.game.gameLost = false;
+                if(choice == MenuGUI.wMenu.MAIN_MENU) {
+                    fullFrame.remove(MenuGUI.wMenu);
+                    removeGameGUI();
+                }
             }
             else {
                 // work out how long its been since the last update, this
