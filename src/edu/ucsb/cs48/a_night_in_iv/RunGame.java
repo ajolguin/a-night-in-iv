@@ -46,12 +46,12 @@ RunGame {
      * Adds entire GameGUI to main frame container
      */
     public void addGameGUI() {
-        System.out.println("Got to addGameGUI");
         fullFrame.add(gGUI.component);
         gGUI.component.validate();
         gGUI.component.repaint();
         fullFrame.revalidate();
         fullFrame.repaint();
+        startGameGUI = false;
     }
 
     /**

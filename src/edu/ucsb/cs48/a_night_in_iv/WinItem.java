@@ -12,7 +12,6 @@ import java.util.TimerTask;
 public class WinItem extends Sprite {
 
     private BufferedImage image;
-    static Timer timer = new Timer();
     public WinItem(BufferedImage image, MapSection map) {
         super(map);
         this.image = image;
@@ -25,16 +24,7 @@ public class WinItem extends Sprite {
 
     @Override
     boolean tryPassThrough(Player player){
-        //game.message = "You made it home!";
-        map.parent.message = "You made it home!";
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                //game.message = "";
-                map.parent.message = "";
-            }
-        };
-        timer.schedule(task,5000);
+        map.parent.winGame = true;
         return true;
     }
 

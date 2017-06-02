@@ -25,12 +25,10 @@ public class RingItem extends Sprite {
 
     @Override
     boolean tryPassThrough(Player player){
-        //game.message = "You made it home!";
         map.parent.message = "You found a ring! It has no use. You feel prettier though.";
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                //game.message = "";
                 map.parent.message = "";
             }
         };

@@ -74,8 +74,6 @@ public class GameComponent extends JComponent {
         g2.setColor(Color.GREEN);
         g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
         g2.setColor(Color.WHITE);
-        g2.drawString(game.message, 110,50);
-
     }
 
     /* Currently unused but might be in the future
