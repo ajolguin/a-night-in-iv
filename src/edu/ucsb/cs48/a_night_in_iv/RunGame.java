@@ -22,6 +22,7 @@ RunGame {
     static boolean gameRunning;
     static boolean atMenus;
     static boolean startGameGUI;
+    static String sceneName;
 
     private RunGame() {
         fullFrame = new JFrame();
@@ -51,7 +52,6 @@ RunGame {
         gGUI.component.repaint();
         fullFrame.revalidate();
         fullFrame.repaint();
-        startGameGUI = false;
     }
 
     public void removeGameGUI() {
@@ -81,7 +81,18 @@ RunGame {
         while(gameRunning)
         {
             //wait here for button press form EDT
-            if(startGameGUI && !atMenus) { addGameGUI(); }
+
+            if(startGameGUI) {
+                System.out.println("Start");
+                gGUI.loadGame(sceneName);
+                addGameGUI();
+                startGameGUI = false;
+                atMenus = false;
+            }
+            else if(atMenus){
+                continue;
+                //prevents reading gGUI.gam
+            }
             else if(gGUI.game.gameWon) {
                 fullFrame.add(MenuGUI.wMenu);
                 int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
@@ -93,7 +104,7 @@ RunGame {
             }
             else if(gGUI.game.gameLost) {
                 fullFrame.add(MenuGUI.wMenu);
-                int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
+                int choice = MenuGUI.wMenu.showLoseDialog(fullFrame);
                 gGUI.game.gameLost = false;
                 if(choice == MenuGUI.wMenu.MAIN_MENU) {
                     fullFrame.remove(MenuGUI.wMenu);

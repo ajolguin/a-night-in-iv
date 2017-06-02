@@ -16,7 +16,7 @@ public class LevelMenu extends JPanel {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> MenuGUI.backToStart());
         JButton level1Button = new JButton("Level 1");
-        level1Button.addActionListener(e -> MenuGUI.exitMenus());
+        level1Button.addActionListener(e -> MenuGUI.exitMenus("gameData"));
         JButton level2Button = new JButton("Level 2");
         level2Button.addActionListener(e -> {} );
         JPanel list = new JPanel();

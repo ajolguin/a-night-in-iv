@@ -34,11 +34,11 @@ public class MenuGUI {
         RunGame.fullFrame.repaint();
     }
 
-    public static void exitMenus() {
+    public static void exitMenus(String sceneName) {
+        RunGame.sceneName = sceneName;
         RunGame.fullFrame.getContentPane().removeAll();
         RunGame.fullFrame.revalidate();
         RunGame.fullFrame.repaint();
-        RunGame.atMenus = false;
         RunGame.startGameGUI = true;
     }
 }

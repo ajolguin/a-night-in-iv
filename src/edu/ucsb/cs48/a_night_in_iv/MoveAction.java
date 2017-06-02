@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
  * @see Player
  */
 public class MoveAction extends AbstractAction {
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     Player player;
     int x = 0;
     int y = 0;
@@ -16,19 +20,17 @@ public class MoveAction extends AbstractAction {
     /**
      * Changes the players PNG sprite file based on the corresponding increment in X/Y
      * Sprite corresponds to direction the user wants the Player to walk in
-     * @param player
      * @param x
      * @param y
      */
-    public MoveAction(Player player, int x, int y) {
-        this.player = player;
+    public MoveAction(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!player.isMoving())
+        if (player!=null && !player.isMoving())
             player.moveInDirection(y, x);
     }
 
