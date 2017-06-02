@@ -1,3 +1,6 @@
+H_BROWN2 BLN BLN BLN  BLN BLN BLN  H_BLUE BLN BLN BLN  . . .    H_BROWN1 BLN BLN BLN  BLN BLN  H_BLUE BLN BLN BLN
+BLN BLN BLN BLN       BLN BLN BLN  BLN BLN BLN BLN     . . .    BLN BLN BLN BLN       BLN BLN  BLN BLN BLN BLN
+BLN BLN BLN BLN       PF PF PF     BLN BLN BLN BLN     PF . PF  BLN BLN BLN BLN       PF PF    BLN BLN BLN BLN
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
@@ -10,9 +13,6 @@
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN . . . . . . .
+PF PF   H_BLACK BLN BLN BLN . .     . . . . . . . . . .     H_BROWN1 BLN BLN BLN PF PF
+BLN BLN BLN BLN BLN BLN     BLN BLN TC TC TC TC TC TC TC TC BLN BLN BLN BLN BLN BLN      BLN BLN
+BLN BLN BLN BLN BLN BLN     BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN BLN
