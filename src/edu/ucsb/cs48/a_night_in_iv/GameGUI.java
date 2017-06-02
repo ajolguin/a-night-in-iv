@@ -29,22 +29,24 @@ public class GameGUI {
         //frame = new JFrame();
         game = new GameModel("gameData");
         game.setPlayer(new Player( 3, 3, 16, 8, "player", game , game.getCurrentMap() ));
-        generateGenericItem(5, game, 0, 1, "COKE", -5);
-        generateGenericItem(5, game, 0, 0, "MUSHROOM", 20);
+        setUpLevel1();
         component = new GameComponent();
-        generateWinItem(game, 0, 0, "T");
-        generateRingItem(game,0,3,"R");
         component.setOpaque(true);
         component.setGame(game);
         addPlayerMovementBindings();
     }
 
-
+    private void setUpLevel1(){
+        generateWinItem(game,0,0,"T");
+        generateRingItem(game,0,0,"R");
+        generateGenericItem(5, game, 0, 1, "COKE", -5);
+        generateGenericItem(5, game, 0, 0, "MUSHROOM", 20);
+    }
 
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = (int)(.5 * game.mapWidth);
+        xTile = 7;//(int)(.5 * game.mapWidth);
         yTile = (int)(.5 * game.mapHeight);
         genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
         System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
@@ -53,8 +55,8 @@ public class GameGUI {
     private void generateRingItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = (int)(.5 * game.mapWidth);
-        yTile = (int)(.5 * game.mapHeight);
+        xTile = 13;//(int)(.5 * game.mapWidth);
+        yTile = 0; //(int)(.5 * game.mapHeight);
         genericItemMapSect.setSprite(new RingItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
         System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
     }

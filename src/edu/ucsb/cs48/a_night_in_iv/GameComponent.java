@@ -64,16 +64,16 @@ public class GameComponent extends JComponent {
         //draw text box when player wins game (ie when message is the win print statement)
         if( !game.message.equals("")) {
             g2.setColor(new Color(1f,0f,0f,.5f));
-            g2.fill(new Rectangle(100,0,250,100));
+            g2.fill(new Rectangle(100,0,600,80));
             g2.setFont(new Font(null,Font.BOLD, 20));
-            g2.setColor(Color.BLACK);
+            g2.setColor(Color.YELLOW);
             g2.drawString(game.message, 110, 50);
         }
 
+        g2.setColor(Color.BLACK);
         g2.fill(new Rectangle(230, 546, 308, 23));
         g2.setColor(Color.GREEN);
         g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
-        g2.setColor(Color.WHITE);
     }
 
     /* Currently unused but might be in the future
