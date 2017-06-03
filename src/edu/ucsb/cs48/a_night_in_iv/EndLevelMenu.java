@@ -20,7 +20,7 @@ public class EndLevelMenu extends JOptionPane {
     public int showWinDialog(JFrame parent){
         String[] options = {"Return to Main Menu", "Restart level", "Next level", "Quit game"};
         return showOptionDialog(parent,
-                "You've survived the perils of IV.",
+                "You've survived the perils of IV.                                   SWAG",
                 "", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);
