@@ -2,9 +2,9 @@ H_PURPLE BLN BLN BLN  BLN BLN BLN  H_BROWN1 BLN BLN BLN  . . .    H_RED BLN BLN 
 BLN BLN BLN BLN       BLN BLN BLN  BLN BLN BLN BLN     . . .    BLN BLN BLN BLN       BLN BLN  BLN BLN BLN BLN
 BLN BLN BLN BLN       PF PF PF     BLN BLN BLN BLN     PF . PF  BLN BLN BLN BLN       PF PF    BLN BLN BLN BLN
 . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . GCA BLN BLN RPC BLN BLN . . . . . . .
+. . . . . . . . . . . BLN BLN BLN BLN BLN BLN . . . . . . .
+. . . . . . . . . . . . . GIRL8 GIRL4 . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
