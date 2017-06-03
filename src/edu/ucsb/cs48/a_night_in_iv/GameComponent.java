@@ -73,13 +73,13 @@ public class GameComponent extends JComponent {
         g2.setColor(Color.BLACK);
         g2.fill(new Rectangle(230, 546, 308, 23));
 
-        if(game.player.getBlackout() <= 50) {
+        if(game.player.getBlackout() < 50) {
             g2.setColor(Color.GREEN);
             g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
-        }else if(game.player.getBlackout() > 50 && game.player.getBlackout() <= 75){
+        }else if(game.player.getBlackout() >= 50 && game.player.getBlackout() < 75){
             g2.setColor(Color.YELLOW);
             g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
-        }else if(game.player.getBlackout() > 75){
+        }else if(game.player.getBlackout() >= 75){
             g2. setColor(Color.RED);
             g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
         }
