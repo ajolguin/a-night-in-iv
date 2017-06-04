@@ -9,7 +9,7 @@ public class LevelMenu extends JPanel {
 
     public LevelMenu() {
         //Adding image as background
-        BackgroundPanel background = new BackgroundPanel("./src/resources/gameData/start.jpg");
+        BackgroundPanel background = new BackgroundPanel();
         this.setLayout(new BorderLayout());
         this.add(background, BorderLayout.CENTER);
         //add buttons
