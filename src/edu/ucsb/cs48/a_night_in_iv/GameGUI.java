@@ -25,31 +25,48 @@ public class GameGUI {
     static final String resourcesDir = "/resources/";
     GameModel game;
     GameComponent component;
+
+    MoveAction moveActionDown, moveActionUp, moveActionLeft, moveActionRight;
+
     public GameGUI() {
-        //frame = new JFrame();
-        game = new GameModel("gameData");
-        game.setPlayer(new Player( 3, 3, 16, 8, "player", game , game.getCurrentMap() ));
-        setUpLevel1();
         component = new GameComponent();
         component.setOpaque(true);
-        component.setGame(game);
         addPlayerMovementBindings();
     }
 
-    private void setUpLevel1(){
-        generateWinItem(game,0,0,"T");
-        generateRingItem(game,0,0,"R");
-        generateGenericItem(5, game, 0, 1, "COKE", -5);
-        generateGenericItem(5, game, 0, 0, "MUSHROOM", 20);
+    public GameModel loadGame(String sceneName){
+        game = generateGameModel(sceneName);
+        component.setGame(game);
+        updateBindings(game.getPlayer());
+        return game;
+    }
+
+    public GameModel generateGameModel(String sceneName){
+        GameModel newGame = new GameModel(sceneName);
+        newGame.setPlayer(new Player( 3, 3, 16, 8, "player", newGame , newGame.getCurrentMap() ));
+        generateGenericItem(5, newGame, 0, 1, "COKE", -5);
+        generateGenericItem(5, newGame, 0, 0, "MUSHROOM", 20);
+        generateWinItem(newGame, 0, 7, "T");
+        generateRingItem(newGame, 0, 3, "R");
+        return newGame;
+    }
+
+    public void updateBindings(Player player) {
+        moveActionDown.setPlayer(player);
+        moveActionUp.setPlayer(player);
+        moveActionLeft.setPlayer(player);
+        moveActionRight.setPlayer(player);
     }
 
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = 7;//(int)(.5 * game.mapWidth);
-        yTile = (int)(.5 * game.mapHeight);
-        genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
-        System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
+        xTile = 23;//(int)(.5 * game.mapWidth);
+        for(int i = 3; i < 15; i++) {
+            yTile = i;
+            genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
+            System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
+        }
     }
 
     private void generateRingItem(GameModel game, int sceneY, int sceneX, String textureID){
@@ -66,11 +83,16 @@ public class GameGUI {
      * @see MoveAction
      */
     private void addPlayerMovementBindings() {
+        moveActionDown   = new MoveAction(0, 1);
+        moveActionUp     = new MoveAction(0, -1);
+        moveActionLeft   = new MoveAction(-1, 0);
+        moveActionRight  = new MoveAction(1, 0);
+
         // https://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html
-        component.registerKeyboardAction(new MoveAction(game.getPlayer(), 0, 1), KeyStroke.getKeyStroke("DOWN"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-        component.registerKeyboardAction(new MoveAction(game.getPlayer(), 0, -1), KeyStroke.getKeyStroke("UP"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-        component.registerKeyboardAction(new MoveAction(game.getPlayer(), -1, 0), KeyStroke.getKeyStroke("LEFT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-        component.registerKeyboardAction(new MoveAction(game.getPlayer(), 1, 0), KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        component.registerKeyboardAction(moveActionDown,    KeyStroke.getKeyStroke("DOWN"),     JComponent.WHEN_IN_FOCUSED_WINDOW);
+        component.registerKeyboardAction(moveActionUp,      KeyStroke.getKeyStroke("UP"),       JComponent.WHEN_IN_FOCUSED_WINDOW);
+        component.registerKeyboardAction(moveActionLeft,    KeyStroke.getKeyStroke("LEFT"),     JComponent.WHEN_IN_FOCUSED_WINDOW);
+        component.registerKeyboardAction(moveActionRight,   KeyStroke.getKeyStroke("RIGHT"),    JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     /**

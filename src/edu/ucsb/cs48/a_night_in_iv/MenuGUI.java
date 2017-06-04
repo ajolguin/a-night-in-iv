@@ -12,12 +12,12 @@ package edu.ucsb.cs48.a_night_in_iv;
 public class MenuGUI {
     public static StartMenu sMenu;
     public static LevelMenu lvlMenu;
-    public static EndLevelMenu wMenu;
+    public static EndLevelMenu eMenu;
 
     public MenuGUI() {
         sMenu = new StartMenu();
         lvlMenu = new LevelMenu();
-        wMenu = new EndLevelMenu();
+        eMenu = new EndLevelMenu();
     }
 
     public static void openLevelSelectMenu(){
@@ -34,11 +34,11 @@ public class MenuGUI {
         RunGame.fullFrame.repaint();
     }
 
-    public static void exitMenus() {
+    public static void exitMenus(String sceneName) {
+        RunGame.sceneName = sceneName;
         RunGame.fullFrame.getContentPane().removeAll();
         RunGame.fullFrame.revalidate();
         RunGame.fullFrame.repaint();
-        RunGame.atMenus = false;
         RunGame.startGameGUI = true;
     }
 }

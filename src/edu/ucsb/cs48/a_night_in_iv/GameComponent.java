@@ -72,8 +72,21 @@ public class GameComponent extends JComponent {
 
         g2.setColor(Color.BLACK);
         g2.fill(new Rectangle(230, 546, 308, 23));
-        g2.setColor(Color.GREEN);
-        g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
+
+        if(game.player.getBlackout() < 50) {
+            g2.setColor(Color.GREEN);
+            g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
+        }else if(game.player.getBlackout() >= 50 && game.player.getBlackout() < 75){
+            g2.setColor(Color.YELLOW);
+            g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
+        }else if(game.player.getBlackout() >= 75){
+            g2. setColor(Color.RED);
+            g2.fill(new Rectangle(234,550,3*game.player.getBlackout(),15));
+        }
+        g2.setFont(new Font("Comic Sans", Font.BOLD,13));
+        g2.setColor(new Color(138,43,226));
+        g2.drawString("B L A C K O U T   B A R",320,562);
+
     }
 
     /* Currently unused but might be in the future

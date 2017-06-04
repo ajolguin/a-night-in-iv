@@ -2,6 +2,7 @@ package edu.ucsb.cs48.a_night_in_iv;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 
 /**
@@ -22,6 +23,7 @@ RunGame {
     static boolean gameRunning;
     static boolean atMenus;
     static boolean startGameGUI;
+    static String sceneName;
 
     private RunGame() {
         fullFrame = new JFrame();
@@ -51,14 +53,31 @@ RunGame {
         gGUI.component.repaint();
         fullFrame.revalidate();
         fullFrame.repaint();
-        startGameGUI = false;
     }
 
-    public void removeGameGUI() {
+    /**
+     * Handles what happens to the main frame container when user selects an option on EndLevelMenu
+     * @param choice integer value returned from EndLevelMenu's Win or Lose dialogue
+     * @see EndLevelMenu
+     */
+    public void modifyGameFrame(int choice) {
+        fullFrame.remove(MenuGUI.eMenu);
         fullFrame.remove(gGUI.component);
-        fullFrame.add(MenuGUI.sMenu);
-        gGUI.component.validate();
-        gGUI.component.repaint();
+        if(choice == MenuGUI.eMenu.MAIN_MENU) {
+            fullFrame.add(MenuGUI.sMenu);
+            atMenus = true;
+        }
+        else if(choice == MenuGUI.eMenu.RESTART) {
+            gGUI.loadGame(sceneName);
+            gGUI.component.validate();
+            gGUI.component.repaint();
+            fullFrame.add(gGUI.component);
+        }
+        else if(choice == MenuGUI.eMenu.QUIT_GAME)
+        {
+            gameRunning = false;
+            return;
+        }
         fullFrame.revalidate();
         fullFrame.repaint();
     }
@@ -81,24 +100,27 @@ RunGame {
         while(gameRunning)
         {
             //wait here for button press form EDT
-            if(startGameGUI && !atMenus) { addGameGUI(); }
+            if(startGameGUI) {
+                System.out.println("Start");
+                gGUI.loadGame(sceneName);
+                addGameGUI();
+                startGameGUI = false;
+                atMenus = false;
+            }
+            else if(atMenus){
+                System.out.print("");
+            }
             else if(gGUI.game.gameWon) {
-                fullFrame.add(MenuGUI.wMenu);
-                int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
+                fullFrame.add(MenuGUI.eMenu);
+                int choice = MenuGUI.eMenu.showWinDialog(fullFrame);
                 gGUI.game.gameWon = false;
-                if(choice == MenuGUI.wMenu.MAIN_MENU) {
-                    fullFrame.remove(MenuGUI.wMenu);
-                    removeGameGUI();
-                }
+                modifyGameFrame(choice);
             }
             else if(gGUI.game.gameLost) {
-                fullFrame.add(MenuGUI.wMenu);
-                int choice = MenuGUI.wMenu.showWinDialog(fullFrame);
+                fullFrame.add(MenuGUI.eMenu);
+                int choice = MenuGUI.eMenu.showLoseDialog(fullFrame);
                 gGUI.game.gameLost = false;
-                if(choice == MenuGUI.wMenu.MAIN_MENU) {
-                    fullFrame.remove(MenuGUI.wMenu);
-                    removeGameGUI();
-                }
+                modifyGameFrame(choice);
             }
             else {
                 // work out how long its been since the last update, this
@@ -147,6 +169,8 @@ RunGame {
                 }
             }
         }
+        // destroys the JFrame object and successfully allows for the program to end
+        fullFrame.dispatchEvent(new WindowEvent(fullFrame, WindowEvent.WINDOW_CLOSING));
     }
 
     /**
@@ -163,7 +187,6 @@ RunGame {
     public static void main(String[] args) {
         RunGame fullGame = new RunGame();
         fullGame.gameLoop();
-
     }
 
 }
