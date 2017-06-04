@@ -57,7 +57,7 @@ public class MenuButton extends JComponent implements MouseListener {
 	public void mouseReleased(MouseEvent e){
 		notifyListeners(e);
 		this.remove(clickImage);
-		this.add(mouseOverImage);
+		this.add(defaultImage);
 		revalidate();
 		repaint();
 	}
