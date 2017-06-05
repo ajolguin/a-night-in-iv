@@ -1,8 +1,14 @@
 package edu.ucsb.cs48.a_night_in_iv;
 
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 
 /**
@@ -24,15 +30,26 @@ RunGame {
     static boolean atMenus;
     static boolean startGameGUI;
     static String sceneName;
+    static MediaPlayer songPlayer;
+    public final String songDir = "src/resources/music/";
+    static String currentSong;
 
     private RunGame() {
         fullFrame = new JFrame();
+        JFXPanel songPanel = new JFXPanel();
         fullFrame.getContentPane().setPreferredSize(new Dimension(24 * GameModel.PIXEL_SIZE, 18 * GameModel.PIXEL_SIZE));
         fullFrame.setTitle("A Night In IV");
         fullFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fullFrame.pack();
         gGUI = new GameGUI();
         mGUI = new MenuGUI();
+        currentSong = songDir + "mainmenu.mp3";
+        Media song = new Media(new File(currentSong).toURI().toString());
+        songPlayer = new MediaPlayer(song);
+        songPlayer.setAutoPlay(true);
+        Runnable songJob = () -> songPlayer.seek(Duration.ZERO);
+        songPlayer.setOnEndOfMedia(songJob);
+        songPlayer.play();
     }
 
     /**
@@ -55,6 +72,30 @@ RunGame {
         fullFrame.repaint();
     }
 
+    public void modifySongPlayer(String lvl) {
+        songPlayer.dispose();
+        if(lvl.equals("level1")) {
+            currentSong = songDir + "level1.mp3";
+            Media song = new Media(new File(currentSong).toURI().toString());
+            songPlayer = new MediaPlayer(song);
+        }
+        else if(lvl.equals("level2"))
+        {
+            currentSong = songDir + "level2.mp3";
+            Media song = new Media(new File(currentSong).toURI().toString());
+            songPlayer = new MediaPlayer(song);
+        }
+        else if(lvl.equals("mainmenu"))
+        {
+            currentSong = songDir + "mainmenu.mp3";
+            Media song = new Media(new File(currentSong).toURI().toString());
+            songPlayer = new MediaPlayer(song);
+        }
+        Runnable songJob = () -> songPlayer.seek(Duration.ZERO);
+        songPlayer.setOnEndOfMedia(songJob);
+        songPlayer.play();
+    }
+
     /**
      * Handles what happens to the main frame container when user selects an option on EndLevelMenu
      * @param choice integer value returned from EndLevelMenu's Win or Lose dialogue
@@ -67,25 +108,29 @@ RunGame {
             fullFrame.add(MenuGUI.sMenu);
             atMenus = true;
             MenuGUI.currentMenu = MenuGUI.sMenu;
+            modifySongPlayer("mainmenu");
         }
         else if(choice == MenuGUI.eMenu.RESTART) {
             gGUI.loadGame(sceneName);
             gGUI.component.validate();
             gGUI.component.repaint();
             fullFrame.add(gGUI.component);
+            modifySongPlayer(sceneName);
         }
         else if(choice == MenuGUI.eMenu.NEXT_LEVEL) {
-            if (gGUI.game.name == "level1") {
+            if (gGUI.game.name.equals("level1")) {
                 sceneName = "level2";
                 gGUI.loadGame(sceneName);
                 gGUI.component.validate();
                 gGUI.component.repaint();
                 fullFrame.add(gGUI.component);
+                modifySongPlayer(sceneName);
             }
         }
         else if(choice == MenuGUI.eMenu.QUIT_GAME)
         {
             gameRunning = false;
+            songPlayer.stop();
             return;
         }
         fullFrame.revalidate();
@@ -114,6 +159,7 @@ RunGame {
                 System.out.println("Start");
                 gGUI.loadGame(sceneName);
                 addGameGUI();
+                modifySongPlayer(sceneName);
                 startGameGUI = false;
                 atMenus = false;
             }
@@ -121,12 +167,21 @@ RunGame {
                 System.out.print("");
             }
             else if(gGUI.game.gameWon) {
+                songPlayer.stop();
+                int choice;
                 fullFrame.add(MenuGUI.eMenu);
-                int choice = MenuGUI.eMenu.showWinDialog(fullFrame);
+                if(sceneName.equals("level2"))
+                {
+                    choice = MenuGUI.eMenu.showFinalWinDialog(fullFrame);
+                }
+                else {
+                    choice = MenuGUI.eMenu.showWinDialog(fullFrame);
+                }
                 gGUI.game.gameWon = false;
                 modifyGameFrame(choice);
             }
             else if(gGUI.game.gameLost) {
+                songPlayer.stop();
                 fullFrame.add(MenuGUI.eMenu);
                 int choice = MenuGUI.eMenu.showLoseDialog(fullFrame);
                 gGUI.game.gameLost = false;

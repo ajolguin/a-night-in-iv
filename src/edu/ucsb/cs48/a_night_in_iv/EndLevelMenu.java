@@ -25,10 +25,22 @@ public class EndLevelMenu extends JOptionPane {
     public int showWinDialog(JFrame parent){
         String[] options = {ol.get(0), ol.get(1), ol.get(2), ol.get(3)};
         int selected_option = showOptionDialog(parent,
-                "You've survived the perils of IV.                                   SWAG",
+                "You've survived the LITNESS of IV.",
                 "", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);
+        if(selected_option == JOptionPane.CLOSED_OPTION) { return QUIT_GAME; }
+        return ol.indexOf(options[selected_option]);
+    }
+
+    public int showFinalWinDialog(JFrame parent){
+        String[] options = {ol.get(0), ol.get(1), ol.get(3)};
+        int selected_option = showOptionDialog(parent,
+                "You've survived the LITNESS of IV.",
+                "", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null,
+                options, options[0]);
+        if(selected_option == JOptionPane.CLOSED_OPTION) { return QUIT_GAME; }
         return ol.indexOf(options[selected_option]);
     }
 
@@ -39,6 +51,7 @@ public class EndLevelMenu extends JOptionPane {
                 "", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);
+        if(selected_option == JOptionPane.CLOSED_OPTION) { return QUIT_GAME; }
         return ol.indexOf(options[selected_option]);
     }
 }
