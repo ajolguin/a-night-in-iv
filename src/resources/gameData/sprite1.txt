@@ -6,7 +6,7 @@ BLN BLN BLN BLN      PF PF PF    BLN BLN BLN BLN    PF . PF BLN BLN BLN BLN     
 . RGC BLN BLN . . . . . . . . . . . . . RPC BLN BLN . . . .
 . BLN BLN BLN . . . . . . . . . . . . . BLN BLN BLN . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . BN CK HD PZ . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . RCA BLN BLN . . . . . . . . . . BCA BLN BLN . . . .

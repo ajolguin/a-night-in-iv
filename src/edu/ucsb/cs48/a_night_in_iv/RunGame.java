@@ -143,6 +143,7 @@ RunGame {
                     System.out.println("Current blackout bar value: " + gGUI.game.getPlayer().getBlackout());
                     lastFpsTime = 0;
                     fps = 0;
+                    gGUI.game.player.modifyBlackout(5);
                 }
 
                 // update the game logic

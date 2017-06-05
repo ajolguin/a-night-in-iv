@@ -13,11 +13,11 @@ public class LevelMenu extends JPanel {
         this.setLayout(new BorderLayout());
         this.add(background, BorderLayout.CENTER);
         //add buttons
-        JButton backButton = new JButton("Back");
+        MenuButton backButton = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/BackButton1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/BackButton2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/BackButton3.jpg") );
         backButton.addActionListener(e -> MenuGUI.backToStart());
-        JButton level1Button = new JButton("Level 1");
+        MenuButton level1Button = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/Level1Button1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level1Button2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level1Button3.jpg") );
         level1Button.addActionListener(e -> MenuGUI.exitMenus("gameData"));
-        JButton level2Button = new JButton("Level 2");
+        MenuButton level2Button = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/Level2Button1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level2Button2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level2Button3.jpg") );
         level2Button.addActionListener(e -> {} );
         JPanel list = new JPanel();
         list.setLayout(new GridBagLayout());
