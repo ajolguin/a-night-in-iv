@@ -21,7 +21,7 @@ public class StartMenu extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridheight = 1;
 		gbc.gridwidth = 2;
-		gbc.insets = new Insets(50, 0, 0, 0);
+		gbc.insets = new Insets(50, 20, 20, 0);
 		gbc.fill = gbc.NONE;
 		list.add(levelSelectButton, gbc);
 		list.add(helpMenuButton, gbc);

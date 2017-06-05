@@ -74,8 +74,12 @@ RunGame {
             fullFrame.add(gGUI.component);
         }
         else if(choice == MenuGUI.eMenu.NEXT_LEVEL) {
-            if (gGUI.game.name == "level1")
-                MenuGUI.exitMenus("level2");
+            if (gGUI.game.name == "level1") {
+                gGUI.loadGame(sceneName);
+                gGUI.component.validate();
+                gGUI.component.repaint();
+                fullFrame.add(gGUI.component);
+            }
         }
         else if(choice == MenuGUI.eMenu.QUIT_GAME)
         {

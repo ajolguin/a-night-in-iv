@@ -22,8 +22,9 @@ public class LevelMenu extends JPanel {
         JPanel list = new JPanel();
         list.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(50, 0, 0, 0);
-        gbc.fill = gbc.NONE;
+        gbc.insets = new Insets(50, 20, 20, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.BOTH;
         list.add(backButton, gbc);
         list.add(level1Button, gbc);
         list.add(level2Button, gbc);
