@@ -15,7 +15,7 @@ public class StartMenu extends JPanel{
 		MenuButton levelSelectButton = new MenuButton(new BackgroundPanel("./src/resources/buttons2/LevelSelectButton1.jpg"),new BackgroundPanel("./src/resources/buttons2/LevelSelectButton2.jpg"),new BackgroundPanel("./src/resources/buttons2/LevelSelectButton3.jpg"));
 		levelSelectButton.addActionListener( e -> MenuGUI.openLevelSelectMenu() );
 		MenuButton helpMenuButton = new MenuButton(new BackgroundPanel("./src/resources/buttons2/HelpButton1.jpg"),new BackgroundPanel("./src/resources/buttons2/HelpButton2.jpg"),new BackgroundPanel("./src/resources/buttons2/HelpButton3.jpg") );
-		helpMenuButton.addActionListener( e -> {} );
+		helpMenuButton.addActionListener( e -> MenuGUI.openHelpMenu() );
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();

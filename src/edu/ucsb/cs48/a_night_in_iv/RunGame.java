@@ -66,6 +66,7 @@ RunGame {
         if(choice == MenuGUI.eMenu.MAIN_MENU) {
             fullFrame.add(MenuGUI.sMenu);
             atMenus = true;
+            MenuGUI.currentMenu = MenuGUI.sMenu;
         }
         else if(choice == MenuGUI.eMenu.RESTART) {
             gGUI.loadGame(sceneName);

@@ -2,8 +2,6 @@ package edu.ucsb.cs48.a_night_in_iv;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class LevelMenu extends JPanel {
 
