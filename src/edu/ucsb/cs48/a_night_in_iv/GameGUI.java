@@ -45,13 +45,14 @@ public class GameGUI {
         GameModel newGame = new GameModel(sceneName);
         newGame.setPlayer(new Player( 3, 3, 16, 8, "player", newGame , newGame.getCurrentMap() ));
         generateGenericItem(6, newGame, 0, 1, "COKE", -5);
-        generateGenericItem(4, newGame, 0, 0, "MUSHROOM", 20);
+        generateGenericItem(4, newGame, 0, 0, "BEER", 20);
         generateGenericItem(4, newGame, 0, 2, "HD", -10);
+        generateGenericItem(3, newGame, 0, 2, "BEER", 20);
         generateGenericItem(4, newGame, 0, 3, "PZ", -10);
-        generateGenericItem(7, newGame, 0, 4, "MUSHROOM", 20);
+        generateGenericItem(7, newGame, 0, 4, "BEER", 20);
         generateGenericItem(3, newGame, 0, 5, "BN", -15);
-        generateGenericItem(5, newGame, 0, 5, "MUSHROOM", 20);
-        generateGenericItem(6, newGame, 0, 6, "MUSHROOM", 20);
+        generateGenericItem(5, newGame, 0, 5, "BEER", 20);
+        generateGenericItem(5, newGame, 0, 6, "BEER", 20);
         generateGenericItem(4, newGame, 0, 7, "COKE", -5);
         generateWinItem(newGame, 0, 7, "T");
         generateRingItem(newGame, 0, 3, "R");
