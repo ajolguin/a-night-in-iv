@@ -59,6 +59,8 @@ public class GameComponent extends JComponent {
         Player player = game.getPlayer();
         g.drawImage(player.getPlayerImage(), player.getxPos(), player.getyPos(), null);
 
+        g.drawImage(game.layover,0,0,null);
+
         Graphics2D g2 = (Graphics2D) g;
 
         //draw text box when player wins game (ie when message is the win print statement)

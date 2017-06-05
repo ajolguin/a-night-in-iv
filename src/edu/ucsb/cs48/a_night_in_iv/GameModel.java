@@ -42,6 +42,7 @@ public class GameModel {
     private int currentMapY;
     private int sceneWidth;
     private int sceneHeight;
+    BufferedImage layover;
 
     public GameModel(String name) {
         this.name = name;
@@ -75,6 +76,12 @@ public class GameModel {
                         sections[y][x] = new MapSection(dir, temp, mapHeight, mapWidth, this);
                     }
                 }
+
+        try {
+                layover = ImageIO.read(getClass().getResource(GameGUI.resourcesDir + "lay.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Player getPlayer() {
