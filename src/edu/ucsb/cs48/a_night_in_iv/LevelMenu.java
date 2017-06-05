@@ -9,16 +9,16 @@ public class LevelMenu extends JPanel {
 
     public LevelMenu() {
         //Adding image as background
-        BackgroundPanel background = new BackgroundPanel("./src/resources/gameData/start.jpg");
+        BackgroundPanel background = new BackgroundPanel("./src/resources/start.jpg");
         this.setLayout(new BorderLayout());
         this.add(background, BorderLayout.CENTER);
         //add buttons
-        MenuButton backButton = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/BackButton1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/BackButton2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/BackButton3.jpg") );
+        MenuButton backButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/BackButton1.jpg"),new BackgroundPanel("./src/resources/buttons/BackButton2.jpg"),new BackgroundPanel("./src/resources/buttons/BackButton3.jpg") );
         backButton.addActionListener(e -> MenuGUI.backToStart());
-        MenuButton level1Button = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/Level1Button1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level1Button2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level1Button3.jpg") );
-        level1Button.addActionListener(e -> MenuGUI.exitMenus("gameData"));
-        MenuButton level2Button = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/Level2Button1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level2Button2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/Level2Button3.jpg") );
-        level2Button.addActionListener(e -> {} );
+        MenuButton level1Button = new MenuButton(new BackgroundPanel("./src/resources/buttons/Level1Button1.jpg"),new BackgroundPanel("./src/resources/buttons/Level1Button2.jpg"),new BackgroundPanel("./src/resources/buttons/Level1Button3.jpg") );
+        level1Button.addActionListener(e -> MenuGUI.exitMenus("level1"));
+        MenuButton level2Button = new MenuButton(new BackgroundPanel("./src/resources/buttons/Level2Button1.jpg"),new BackgroundPanel("./src/resources/buttons/Level2Button2.jpg"),new BackgroundPanel("./src/resources/buttons/Level2Button3.jpg") );
+        level2Button.addActionListener(e -> MenuGUI.exitMenus("level2"));
         JPanel list = new JPanel();
         list.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

@@ -8,13 +8,13 @@ public class StartMenu extends JPanel{
 	
 	public StartMenu(){
 		//Adding image as background
-		BackgroundPanel background = new BackgroundPanel("./src/resources/gameData/start.jpg");
+		BackgroundPanel background = new BackgroundPanel("./src/resources/start.jpg");
 		this.setLayout(new BorderLayout());
 		this.add(background, BorderLayout.CENTER);
 		//add buttons
-		MenuButton levelSelectButton = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/LevelSelectButton1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/LevelSelectButton2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/LevelSelectButton3.jpg"));
+		MenuButton levelSelectButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/LevelSelectButton1.jpg"),new BackgroundPanel("./src/resources/buttons/LevelSelectButton2.jpg"),new BackgroundPanel("./src/resources/buttons/LevelSelectButton3.jpg"));
 		levelSelectButton.addActionListener( e -> MenuGUI.openLevelSelectMenu() );
-		MenuButton helpMenuButton = new MenuButton(new BackgroundPanel("./src/resources/gameData/buttons/HelpButton1.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/HelpButton2.jpg"),new BackgroundPanel("./src/resources/gameData/buttons/HelpButton3.jpg") );
+		MenuButton helpMenuButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/HelpButton1.jpg"),new BackgroundPanel("./src/resources/buttons/HelpButton2.jpg"),new BackgroundPanel("./src/resources/buttons/HelpButton3.jpg") );
 		helpMenuButton.addActionListener( e -> {} );
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());
