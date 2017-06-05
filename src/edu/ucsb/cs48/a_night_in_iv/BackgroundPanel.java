@@ -1,14 +1,15 @@
 package edu.ucsb.cs48.a_night_in_iv;
 import javax.swing.*;
 import java.awt.*;
+import java.lang.String;
 	//code from http://www.java2s.com/Tutorial/Java/0240__Swing/CreatingFrameswithabackgroundimage.htm
 	//for giving the JFrame a background image
 public class BackgroundPanel extends JPanel {
   Image bgimage = null;
 		
- public BackgroundPanel() {
+ public BackgroundPanel(String image) {
     MediaTracker mt = new MediaTracker(this); 
-	bgimage = Toolkit.getDefaultToolkit().getImage("./src/resources/gameData/start.jpg");
+	bgimage = Toolkit.getDefaultToolkit().getImage(image);
     mt.addImage(bgimage, 0);
     try {
       mt.waitForAll();
