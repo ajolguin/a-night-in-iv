@@ -76,6 +76,7 @@ RunGame {
         }
         else if(choice == MenuGUI.eMenu.NEXT_LEVEL) {
             if (gGUI.game.name == "level1") {
+                sceneName = "level2";
                 gGUI.loadGame(sceneName);
                 gGUI.component.validate();
                 gGUI.component.repaint();
