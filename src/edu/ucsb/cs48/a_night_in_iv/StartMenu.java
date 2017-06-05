@@ -11,10 +11,10 @@ public class StartMenu extends JPanel{
 		BackgroundPanel background = new BackgroundPanel("./src/resources/background.png");
 		this.setLayout(new BorderLayout());
 		this.add(background, BorderLayout.CENTER);
-		//add buttons
-		MenuButton levelSelectButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/LevelSelectButton1.jpg"),new BackgroundPanel("./src/resources/buttons/LevelSelectButton2.jpg"),new BackgroundPanel("./src/resources/buttons/LevelSelectButton3.jpg"));
+		//add buttons2
+		MenuButton levelSelectButton = new MenuButton(new BackgroundPanel("./src/resources/buttons2/LevelSelectButton1.jpg"),new BackgroundPanel("./src/resources/buttons2/LevelSelectButton2.jpg"),new BackgroundPanel("./src/resources/buttons2/LevelSelectButton3.jpg"));
 		levelSelectButton.addActionListener( e -> MenuGUI.openLevelSelectMenu() );
-		MenuButton helpMenuButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/HelpButton1.jpg"),new BackgroundPanel("./src/resources/buttons/HelpButton2.jpg"),new BackgroundPanel("./src/resources/buttons/HelpButton3.jpg") );
+		MenuButton helpMenuButton = new MenuButton(new BackgroundPanel("./src/resources/buttons2/HelpButton1.jpg"),new BackgroundPanel("./src/resources/buttons2/HelpButton2.jpg"),new BackgroundPanel("./src/resources/buttons2/HelpButton3.jpg") );
 		helpMenuButton.addActionListener( e -> {} );
 		JPanel list = new JPanel();
 		list.setLayout(new GridBagLayout());

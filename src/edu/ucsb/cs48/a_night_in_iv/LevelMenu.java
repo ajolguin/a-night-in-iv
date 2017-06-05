@@ -12,12 +12,12 @@ public class LevelMenu extends JPanel {
         BackgroundPanel background = new BackgroundPanel("./src/resources/background.png");
         this.setLayout(new BorderLayout());
         this.add(background, BorderLayout.CENTER);
-        //add buttons
-        MenuButton backButton = new MenuButton(new BackgroundPanel("./src/resources/buttons/BackButton1.jpg"),new BackgroundPanel("./src/resources/buttons/BackButton2.jpg"),new BackgroundPanel("./src/resources/buttons/BackButton3.jpg") );
+        //add buttons2
+        MenuButton backButton = new MenuButton(new BackgroundPanel("./src/resources/buttons2/BackButton1.jpg"),new BackgroundPanel("./src/resources/buttons2/BackButton2.jpg"),new BackgroundPanel("./src/resources/buttons2/BackButton3.jpg") );
         backButton.addActionListener(e -> MenuGUI.backToStart());
-        MenuButton level1Button = new MenuButton(new BackgroundPanel("./src/resources/buttons/Level1Button1.jpg"),new BackgroundPanel("./src/resources/buttons/Level1Button2.jpg"),new BackgroundPanel("./src/resources/buttons/Level1Button3.jpg") );
+        MenuButton level1Button = new MenuButton(new BackgroundPanel("./src/resources/buttons2/Level1Button1.jpg"),new BackgroundPanel("./src/resources/buttons2/Level1Button2.jpg"),new BackgroundPanel("./src/resources/buttons2/Level1Button3.jpg") );
         level1Button.addActionListener(e -> MenuGUI.exitMenus("level1"));
-        MenuButton level2Button = new MenuButton(new BackgroundPanel("./src/resources/buttons/Level2Button1.jpg"),new BackgroundPanel("./src/resources/buttons/Level2Button2.jpg"),new BackgroundPanel("./src/resources/buttons/Level2Button3.jpg") );
+        MenuButton level2Button = new MenuButton(new BackgroundPanel("./src/resources/buttons2/Level2Button1.jpg"),new BackgroundPanel("./src/resources/buttons2/Level2Button2.jpg"),new BackgroundPanel("./src/resources/buttons2/Level2Button3.jpg") );
         level2Button.addActionListener(e -> MenuGUI.exitMenus("level2"));
         JPanel list = new JPanel();
         list.setLayout(new GridBagLayout());
