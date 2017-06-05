@@ -66,24 +66,47 @@ public class GameGUI {
         moveActionRight.setPlayer(player);
     }
 
+    /**
+     * creates multiple items spawned randomly within the bounds of the map at specified Y and X coordinate within section[][]
+     * @param howMany the number of genericItems to create
+     * @param game current game class running
+     * @param sceneY corresponding Y coordinate for map
+     * @param sceneX corresponding X coordinate for map
+     * @param textureID the sprite ID # associated with the item
+     * @param boM the amount that affects the players blackout bar
+     * @see MapSection for how section[][] is constructed
+     */
+    static public void generateGenericItem(int howMany, GameModel game, int sceneY, int sceneX, String textureID, int boM) {
+        MapSection itemMapSect = game.getMapInDirection(sceneY, sceneX);
+        for (int i = 0; i < howMany; i++) {
+            int xTile, yTile;
+            do {
+                xTile = (int) (Math.random() * game.mapWidth);
+                yTile = (int) (Math.random() * game.mapHeight);
+            }while ( itemMapSect.getSprite(yTile, xTile) != null );
+            itemMapSect.setSprite(new GenericItem(game.getTexture(textureID), boM, itemMapSect), yTile, xTile);
+            System.out.println("Item " + textureID + " at section " + itemMapSect.name + " (" + yTile + "," + xTile + ")");
+        }
+    }
+
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
-        MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
+        MapSection itemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
         xTile = 23;//(int)(.5 * game.mapWidth);
         for(int i = 3; i < 15; i++) {
             yTile = i;
-            genericItemMapSect.setSprite(new WinItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
-            System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
+            itemMapSect.setSprite(new WinItem(game.getTexture(textureID), itemMapSect), yTile, xTile);
+            System.out.println("Item " + textureID + " at section " + itemMapSect.name + " (" + yTile + "," + xTile + ")");
         }
     }
 
     private void generateRingItem(GameModel game, int sceneY, int sceneX, String textureID){
-        MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
+        MapSection itemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
         xTile = 13;//(int)(.5 * game.mapWidth);
         yTile = 0; //(int)(.5 * game.mapHeight);
-        genericItemMapSect.setSprite(new RingItem(game.getTexture(textureID), genericItemMapSect), yTile, xTile);
-        System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
+        itemMapSect.setSprite(new RingItem(game.getTexture(textureID), itemMapSect), yTile, xTile);
+        System.out.println("Item " + textureID + " at section " + itemMapSect.name + " (" + yTile + "," + xTile + ")");
     }
 
     /**
@@ -101,28 +124,5 @@ public class GameGUI {
         component.registerKeyboardAction(moveActionUp,      KeyStroke.getKeyStroke("UP"),       JComponent.WHEN_IN_FOCUSED_WINDOW);
         component.registerKeyboardAction(moveActionLeft,    KeyStroke.getKeyStroke("LEFT"),     JComponent.WHEN_IN_FOCUSED_WINDOW);
         component.registerKeyboardAction(moveActionRight,   KeyStroke.getKeyStroke("RIGHT"),    JComponent.WHEN_IN_FOCUSED_WINDOW);
-    }
-
-    /**
-     * creates multiple items spawned randomly within the bounds of the map at specified Y and X coordinate within section[][]
-     * @param howMany the number of genericItems to create
-     * @param game current game class running
-     * @param sceneY corresponding Y coordinate for map
-     * @param sceneX corresponding X coordinate for map
-     * @param textureID the sprite ID # associated with the item
-     * @param boM the amount that affects the players blackout bar
-     * @see MapSection for how section[][] is constructed
-     */
-    static public void generateGenericItem(int howMany, GameModel game, int sceneY, int sceneX, String textureID, int boM) {
-        MapSection genericItemMapSect = game.getMapInDirection(sceneY, sceneX);
-        for (int i = 0; i < howMany; i++) {
-            int xTile, yTile;
-            do {
-                xTile = (int) (Math.random() * game.mapWidth);
-                yTile = (int) (Math.random() * game.mapHeight);
-            }while ( genericItemMapSect.getSprite(yTile, xTile) != null );
-            genericItemMapSect.setSprite(new GenericItem(game.getTexture(textureID), boM, genericItemMapSect), yTile, xTile);
-            System.out.println("Item " + textureID + " placed at: (" + yTile + "," + xTile + ") Y/X Coordinate");
-        }
     }
 }

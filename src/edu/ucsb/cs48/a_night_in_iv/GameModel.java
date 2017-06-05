@@ -108,21 +108,19 @@ public class GameModel {
         for (Iterator<Path> it = walk.iterator(); it.hasNext();){
             Path fileEntry = it.next();
             if(Files.isRegularFile(fileEntry)) {
-                System.out.println(fileEntry.getFileName());
                 String name = fileEntry.getFileName().toString();
                 int pos = name.lastIndexOf(".");
                 if (pos > 0) {
                     name = name.substring(0, pos);
                 }
                 try {
-                    System.out.println("name is:" + fileEntry.getFileName() + ":" + name);
+                    System.out.println("file: " + fileEntry.getFileName() + "\t\tname: " + name);
                     textures.put(name, ImageIO.read(Files.newInputStream(fileEntry)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-        System.out.println(textures);
     }
 
     public BufferedImage getTexture(String name) {

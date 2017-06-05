@@ -19,7 +19,6 @@ public class MapSection {
     public MapSection(String dir, String id, int height, int width, GameModel g) {
         parent = g;
         this.name = id;
-        System.out.println(name);
         Scanner mapScanner = new Scanner(getClass().getResourceAsStream(dir + "map" + name + ".txt"));
         Scanner spriteScanner = new Scanner(getClass().getResourceAsStream(dir + "sprite" + name + ".txt"));
         this.width = width;
