@@ -29,6 +29,7 @@ RunGame {
     static boolean gameRunning;
     static boolean atMenus;
     static boolean startGameGUI;
+    static boolean blackoutOverTime = true;
     static String sceneName;
     static MediaPlayer songPlayer;
     public final String songDir = "src/resources/music/";
@@ -208,7 +209,9 @@ RunGame {
                     System.out.println("Current blackout bar value: " + gGUI.game.getPlayer().getBlackout());
                     lastFpsTime = 0;
                     fps = 0;
-                    gGUI.game.player.modifyBlackout(5);
+                    if(blackoutOverTime) {
+                        gGUI.game.player.modifyBlackout(4);
+                    }
                 }
 
                 // update the game logic

@@ -158,11 +158,16 @@ public class Player extends Sprite {
             return true;
         }
         else{
-            this.blackout += boModifier;
-            if(this.getBlackout() >= 100) {
+            int x = this.blackout + boModifier;
+            if(x >= 100){
+                this.setBlackout(100);
                 game.gameLost = true;
+                return true;
             }
-            return true;
+            else {
+                this.blackout += boModifier;
+                return true;
+            }
         }
     }
 

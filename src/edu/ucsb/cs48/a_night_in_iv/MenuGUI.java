@@ -54,6 +54,12 @@ public class MenuGUI {
     public static void exitMenus(String sceneName) {
         RunGame.sceneName = sceneName;
         RunGame.fullFrame.getContentPane().removeAll();
+        if(sceneName.equals("level2")){
+            RunGame.blackoutOverTime = false;
+        }
+        if(!sceneName.equals("level2")){
+            RunGame.blackoutOverTime = true;
+        }
         RunGame.fullFrame.revalidate();
         RunGame.fullFrame.repaint();
         RunGame.startGameGUI = true;

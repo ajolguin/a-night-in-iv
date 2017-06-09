@@ -25,7 +25,7 @@ public class EndLevelMenu extends JOptionPane {
     public int showWinDialog(JFrame parent){
         String[] options = {ol.get(0), ol.get(1), ol.get(2), ol.get(3)};
         int selected_option = showOptionDialog(parent,
-                "You've survived the LITNESS of IV.",
+                "You've survived the LITNESS of IV.                                    SWAG",
                 "", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);
@@ -36,7 +36,7 @@ public class EndLevelMenu extends JOptionPane {
     public int showFinalWinDialog(JFrame parent){
         String[] options = {ol.get(0), ol.get(1), ol.get(3)};
         int selected_option = showOptionDialog(parent,
-                "You've survived the LITNESS of IV.",
+                "You've survived the LITNESS of IV.                                    SWAG",
                 "", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null,
                 options, options[0]);

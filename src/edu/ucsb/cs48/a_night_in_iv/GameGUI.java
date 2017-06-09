@@ -54,7 +54,7 @@ public class GameGUI {
         generateGenericItem(5, newGame, 0, 5, "BEER", 20);
         generateGenericItem(5, newGame, 0, 6, "BEER", 20);
         generateGenericItem(4, newGame, 0, 7, "COKE", -5);
-        generateWinItem(newGame, 0, 7, "T");
+        generateWinItem(newGame, 0, 7, "WIN");
         generateRingItem(newGame, 0, 3, "R");
         return newGame;
     }
@@ -92,7 +92,7 @@ public class GameGUI {
     private void generateWinItem(GameModel game, int sceneY, int sceneX, String textureID){
         MapSection itemMapSect = game.getMapInDirection(sceneY, sceneX);
         int xTile, yTile;
-        xTile = 23;//(int)(.5 * game.mapWidth);
+        xTile = 22;//(int)(.5 * game.mapWidth);
         for(int i = 3; i < 15; i++) {
             yTile = i;
             itemMapSect.setSprite(new WinItem(game.getTexture(textureID), itemMapSect), yTile, xTile);
