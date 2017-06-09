@@ -1,6 +1,6 @@
-H_BROWN2 BLN   . .     . . .      H_BLUE BLN . .    . . .    H_BROWN1 BLN BLN BLN  BLN BLN  H_TURQ BLN BLN BLN
-BLN BLN    . BLN       . BLN .     . . . BLN       . . .    BLN BLN BLN BLN       BLN BLN  BLN BLN BLN BLN
-BLN BLN    . BLN       PF PF PF     BLN BLN BLN BLN  PF . PF  BLN BLN BLN BLN       PF PF    BLN BLN BLN BLN
+H_BROWN2 BLN BLN BLN     BLN BLN BLN  H_BLUE BLN BLN BLN . . .   H_BROWN1 BLN BLN BLN BLN BLN H_TURQ BLN BLN BLN
+BLN BLN      BLN BLN     BLN BLN BLN  BLN BLN BLN BLN    . . .   BLN BLN BLN BLN      BLN BLN BLN BLN BLN BLN
+BLN BLN      BLN BLN     PF PF PF     BLN BLN BLN BLN    PF . PF BLN BLN BLN BLN      PF PF   BLN BLN BLN BLN
 . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
 . RRC BLN BLN RBC BLN BLN RGC BLN BLN RPC BLN BLN RRC BLN BLN RBC BLN BLN RGC BLN BLN . .
