@@ -121,6 +121,7 @@ RunGame {
         else if(choice == MenuGUI.eMenu.NEXT_LEVEL) {
             if (gGUI.game.name.equals("level1")) {
                 sceneName = "level2";
+                blackoutOverTime = false;
                 gGUI.loadGame(sceneName);
                 gGUI.component.validate();
                 gGUI.component.repaint();
