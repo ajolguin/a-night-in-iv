@@ -14,22 +14,31 @@ Arrow keys to move. Mouse to navigate menus.
 
 This project should be compiled using the IntelliJ, a free IDE (https://www.jetbrains.com/idea/download/). 
 Download the project from this repository.
+
 After unzipping this project, construct a new IntelliJ project on the folder extracted.
-	- On the IntelliJ welcome screen, click "open"
-	- Navigate to where you unzipped the folder for this repository
-	- Select the entire folder, then click "OK"
+
+- On the IntelliJ welcome screen, click "open"
+
+- Navigate to where you unzipped the folder for this repository
+
+- Select the entire folder, then click "OK"
 
 Once the project is constructed:
-	- Navigate to the "RunGame.java" file under "a-night-in-iv/src/edu/ucsb/cs48/a_night_in_iv/"
-	- Select the file and click on the green play button next to the "RunGame" class to start the game
+
+- Navigate to the "RunGame.java" file under "a-night-in-iv/src/edu/ucsb/cs48/a_night_in_iv/"
+
+- Select the file and click on the green play button next to the "RunGame" class to start the game
 
 The resource file, which houses all the data assests used, is under "UCSB-RPG/src/resource/".
 
 # Contributions
 
 Music: 8 Bit Universe (https://www.youtube.com/channel/UCn4HDI02U4f3VEsghRX7dRw)
+
 Sprite Work / Level Design: @CrisCab
+
 Program Development: @k0vl @solipsism648 @amahini
+
 Menu Design: @k0vl
 
 # Bugs
