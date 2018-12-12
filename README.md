@@ -35,7 +35,7 @@ The resource file, which houses all the data assests used, is under "UCSB-RPG/sr
 
 Music: 8 Bit Universe (https://www.youtube.com/channel/UCn4HDI02U4f3VEsghRX7dRw)
 
-Sprite Work / Level Design: @CrisCab
+Sprite Work / Level Design: @CrisCab @ajolguin
 
 Program Development: @k0vl @solipsism648 @amahini
 
